@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="musica">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="album" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="artista" type="xs:string"/>
+                            <xs:element name="duracion" type="xs:string"/>
+                            <xs:element name="NumCanciones" type="xs:positiveInteger"/>
+                            <xs:element name="fecha">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <!-- DD-MM-YYYY -->
+                                        <xs:pattern value="\d{2}-\d{2}-\d{4}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="genero" type="xs:string"/>
+                            <xs:element name="discografica" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute name="titulo" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

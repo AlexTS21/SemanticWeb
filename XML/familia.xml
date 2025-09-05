@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="familia.xsl"?>
+<familia xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="familia.xsd">
+    <individio>
+        <nombre>José</nombre>
+        <nombre>Alejandro</nombre>
+        <paterno>Tejeda</paterno>
+        <materno>Sánchez</materno>
+        <edad>21</edad>
+        <fechaCumpleaños>21-12</fechaCumpleaños>
+    </individio>
+    <padre>
+        <nombre>Cuitlahuac</nombre>
+        <paterno>Tejeda</paterno>
+        <materno>Hernandez</materno>
+        <edad>51</edad>
+        <fechaCumpleaños>28-12</fechaCumpleaños>
+    </padre>
+    <madre>
+        <nombre>Gabriela</nombre>
+        <nombre>Alejandra</nombre>
+        <paterno>Sánchez</paterno>
+        <materno>Camacho</materno>
+        <edad>50</edad>
+        <fechaCumpleaños>18-03</fechaCumpleaños>
+    </madre>
+    <hermano>
+        <nombre>José</nombre>
+        <nombre>Gabriel</nombre>
+        <paterno>Tejeda</paterno>
+        <materno>Sánchez</materno>
+        <edad>23</edad>
+        <fechaCumpleaños>19-02</fechaCumpleaños>
+    </hermano>
+</familia>

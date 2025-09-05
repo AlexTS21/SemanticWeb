@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="peliculas.xsl"?>
+<cartelera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="peliculas.xsd">
+  <pelicula>
+    <titulo>Los tipos malos 2</titulo>
+    <fecha>2025-08-01</fecha>
+    <genero>Animación, Comedia</genero>
+    <director>Pierre Perifel; JP Sans</director>
+    <actores>
+      <actor>Sam Rockwell</actor>
+      <actor>Marc Maron</actor>
+    </actores>
+    <duracion>104 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>The Naked Gun</titulo>
+    <fecha>2025-08-01</fecha>
+    <genero>Comedia, Acción</genero>
+    <director>Akiva Schaffer</director>
+    <actores>
+      <actor>Liam Neeson</actor>
+      <actor>Pamela Anderson</actor>
+    </actores>
+    <duracion>85 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Freakier Friday</titulo>
+    <fecha>2025-08-08</fecha>
+    <genero>Comedia fantástica</genero>
+    <director>Nisha Ganatra</director>
+    <actores>
+      <actor>Jamie Lee Curtis</actor>
+      <actor>Lindsay Lohan</actor>
+    </actores>
+    <duracion>111 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Weapons</titulo>
+    <fecha>2025-08-08</fecha>
+    <genero>Terror, Misterio</genero>
+    <director>Zach Cregger</director>
+    <actores>
+      <actor>Josh Brolin</actor>
+      <actor>Julia Garner</actor>
+    </actores>
+    <duracion>128 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Mi postre favorito</titulo>
+    <fecha>2025-08-08</fecha>
+    <genero>Comedia dramática, Romántico</genero>
+    <director>Maryam Moghadam</director>
+    <actores>
+      <actor>Lili Farhadpour</actor>
+      <actor>Esmaeel Mehrabi</actor>
+    </actores>
+    <duracion>96 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Los Súper Elfkins</titulo>
+    <fecha>2025-08-14</fecha>
+    <genero>Animación, Comedia</genero>
+    <director>Ute von Münchow-Pohl</director>
+    <actores>
+      <actor>Maika Monroe</actor>
+      <actor>Louis Hofmann</actor>
+    </actores>
+    <duracion>76 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Dangerous Animals</titulo>
+    <fecha>2025-08-14</fecha>
+    <genero>Suspenso, Acción</genero>
+    <director>Sean Byrne</director>
+    <actores>
+      <actor>Hassie Harrison</actor>
+      <actor>Josh Heuston</actor>
+    </actores>
+    <duracion>98 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Los Muértimer</titulo>
+    <fecha>2025-08-14</fecha>
+    <genero>Comedia de terror</genero>
+    <director>Álvaro Fernández Armero</director>
+    <actores>
+      <actor>Diego Montejo</actor>
+      <actor>Iratxe Emparan</actor>
+    </actores>
+    <duracion>90 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>Heidi: El rescate del lince</titulo>
+    <fecha>2025-08-22</fecha>
+    <genero>Animación, Aventura, Familiar</genero>
+    <director>Tobias Schwarz; Aizea Roca</director>
+    <actores>
+      <actor>Max Giermann (voz)</actor>
+      <actor>Michael McCown (voz)</actor>
+    </actores>
+    <duracion>78 min</duracion>
+  </pelicula>
+  <pelicula>
+    <titulo>The Roses</titulo>
+    <fecha>2025-08-29</fecha>
+    <genero>Comedia Romantica</genero>
+    <director>Jay Roach</director>
+    <actores>
+      <actor>Olivia Colman</actor>
+      <actor>Benedict Cumberbatch</actor>
+    </actores>
+    <duracion>105 min</duracion>
+  </pelicula>
+</cartelera>

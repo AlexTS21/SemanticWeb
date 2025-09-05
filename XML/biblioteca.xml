@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="biblioteca.xsl"?>
+<biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="biblioteca.xsd">
+  <libro>
+    <titulo>La Novena</titulo>
+    <autor>Marcela Serrano</autor>
+    <genero>Ficción moderna</genero>
+    <sinopsis>Durante la dictadura de Pinochet, 
+        un joven relegado a una zona rural es 
+        acogido por Amelia, dueña del fundo La Novena; 
+        entre ellos surge una compleja relación que 
+        desafía prejuicios y sobrevivencia política.
+    </sinopsis>
+    <fecha_publicacion>2016</fecha_publicacion>
+    <paginas>251</paginas>
+  </libro>
+  <libro>
+    <titulo>Sigue mi voz</titulo>
+    <autor>Ariana Godoy</autor>
+    <genero>Romance juvenil</genero>
+    <sinopsis>¿Es posible enamorarse de alguien sin 
+        haberlo visto? Klara reflexiona sobre el amor 
+        platónico mientras escucha su programa favorito 
+        de radio “Sigue mi voz”.
+    </sinopsis>
+    <fecha_publicacion>2022</fecha_publicacion>
+    <paginas>336</paginas>
+  </libro>
+  <libro>
+    <titulo>Fleur</titulo>
+    <autor>Ariana Godoy</autor>
+    <genero>Fantástico, Suspenso</genero>
+    <sinopsis>Parte de la saga Darks, narra en clave 
+        fantasiosa y emotiva la historia de Fleur, 
+        explorando secretos oscuros y dilemas morales en un entorno misterioso.
+    </sinopsis>
+    <fecha_publicacion>2022</fecha_publicacion>
+    <paginas>308</paginas>
+  </libro>
+  <libro>
+    <titulo>Rebelión en la granja</titulo>
+    <autor>George Orwell</autor>
+    <genero>Sátira política, Fábula</genero>
+    <sinopsis>Una fábula mordaz donde los animales 
+        de una granja se rebelan contra sus opresores 
+        humanos, solo para caer en una nueva tiranía 
+        entre ellos—una crítica al totalitarismo.
+    </sinopsis>
+    <fecha_publicacion>1945</fecha_publicacion>
+    <paginas>160</paginas>
+  </libro>
+  <libro>
+    <titulo>El programador pragmático</titulo>
+    <autor>Andrew Hunt; David Thomas</autor>
+    <genero>Programación, Ingeniería de software</genero>
+    <sinopsis>Una colección de consejos pragmáticos para desarrolladores, 
+        que promueve adaptabilidad, pensamiento crítico y profesionalismo 
+        en el desarrollo de software.
+    </sinopsis>
+    <fecha_publicacion>1999</fecha_publicacion>
+    <paginas>430</paginas>
+  </libro>
+</biblioteca>

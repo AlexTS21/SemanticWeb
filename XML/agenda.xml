@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="agenda.xsl"?>
+<agenda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="agenda.xsd">
+    <contacto id="0">
+        <nombre>Cuitalhuac Tejeda Hernandez</nombre>
+        <telefono>2213871254</telefono>
+        <parentezco>familiar</parentezco>
+        <correo>chtejeda@gmail.com</correo>
+    </contacto>
+    <contacto id="1">
+        <nombre>Fatima Margarita Cacalo Huerta</nombre>
+        <telefono>2215621520</telefono>
+        <parentezco>pareja</parentezco>
+        <correo>fatibot@gmail.com</correo>
+    </contacto>
+    <contacto id="2">
+        <nombre>Gabriela Alejandra Sánchez Camacho</nombre>
+        <telefono>2491237843</telefono>
+        <parentezco>familiar</parentezco>
+        <correo>rigos@gmail.com</correo>
+    </contacto>
+    <contacto id="3">
+        <nombre>Gabriel Tejeda Sánchez</nombre>
+        <telefono>2218457382</telefono>
+        <parentezco>familiar</parentezco>
+        <correo>larry123@gmail.com</correo>
+    </contacto>
+    <contacto id="4">
+        <nombre>Alexander Tapia Cortez</nombre>
+        <telefono>2384593493</telefono>
+        <parentezco>amigo</parentezco>
+        <correo>alexgatsby@gmail.com</correo>
+    </contacto>
+    <contacto id="5">
+        <nombre>Alejandra Sánchez Camacho</nombre>
+        <telefono>2213157600</telefono>
+        <parentezco>familiar</parentezco>
+        <correo>isaluz77@gmail.com</correo>
+    </contacto>
+    <contacto id="6">
+        <nombre>Gerardo Martinez Guzman</nombre>
+        <telefono>2899322542</telefono>
+        <parentezco>trabajo</parentezco>
+        <correo>geramx@gmail.com</correo>
+    </contacto>
+</agenda>

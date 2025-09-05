@@ -1,0 +1,147 @@
+body{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    font-family: system-ui, sans-serif; 
+}
+
+table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    font-family: system-ui, sans-serif; 
+}
+
+th, td { 
+    border: 1px solid #ddd; 
+    padding: 8px; 
+}
+
+th { 
+    background: #b7dbac; 
+    text-align: left; 
+}
+
+tr:nth-child(even) { 
+    background: #fafafa; 
+}
+
+h2 { 
+    font-weight: 600; 
+    margin-bottom: 20px;
+    font-family: system-ui, sans-serif; 
+    text-align: center;
+}
+
+/*LIBRERIA*/
+.libro { background: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    padding: 16px; 
+    margin-bottom: 16px; 
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s; 
+}
+
+.libro:hover{
+    transform: scale(1.01);
+}
+
+.libro h2 { margin: 0 0 8px 0; 
+    font-size: 1.3em; 
+    color: #333; 
+}
+
+.libro p { 
+    margin: 4px 0; 
+    line-height: 1.4; 
+}
+
+.libro .autor { 
+    font-weight: bold; 
+}
+
+.libro .genero { font-style: italic; 
+    color: #666; 
+}
+
+.libro .sinopsis { 
+    margin-top: 8px; 
+}
+
+.libro .meta { font-size: 0.9em; 
+    color: #444; 
+    margin-top: 6px; 
+}
+
+/*MUSICA*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.03);
+}
+
+.titulo {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.artista {
+    font-size: 1.1em;
+    color: #16a085;
+    margin-bottom: 8px;
+}
+
+.info p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.fecha{
+    margin-bottom: 8px;
+}
+
+/*Reccetario*/
+.receta {
+    background: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.receta:hover{
+    transform: scale(1.01);
+}
+.receta h2 {
+    text-align: left;
+    color: #2c3e50;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 5px;
+}
+h3 {
+    color: #27ae60;
+    margin-top: 15px;
+}
+ul, ol {
+    margin-left: 20px;
+}
+.detalles {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+}

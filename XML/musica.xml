@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="musica.xsl"?>
+<musica xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="musica.xsd">
+    <album titulo="Forever Howlong">
+        <artista>Black Country New Road</artista>
+        <duracion>52:15 min</duracion>    
+        <NumCanciones>11</NumCanciones>
+        <fecha>04-04-2025</fecha>
+        <genero>Folk</genero>
+        <discografica>Ninja Tune</discografica>
+    </album>
+    <album titulo="Consuelo en domingo">
+        <artista>Enjambre</artista>
+        <duracion>51:00 min</duracion>    
+        <NumCanciones>11</NumCanciones>
+        <fecha>08-03-2005</fecha>
+        <genero>Rock en español</genero>
+        <discografica>Universal Music Records</discografica>
+    </album>
+    <album titulo="ESEXUA">
+        <artista>FKA twigs</artista>
+        <duracion>42:58 min</duracion>    
+        <NumCanciones>11</NumCanciones>
+        <fecha>24-01-2025</fecha>
+        <genero>Pop Altenativo</genero>
+        <discografica>Atlantic Records</discografica>
+    </album>
+    <album titulo="Coming Home">
+        <artista>Ic3peak</artista>
+        <duracion>31:53 min</duracion>    
+        <NumCanciones>12</NumCanciones>
+        <fecha>31-01-2025</fecha>
+        <genero>Electronica</genero>
+        <discografica>Ic3peak</discografica>
+    </album>
+    <album titulo="Even in arcadia">
+        <artista>Sleep token</artista>
+        <duracion>65:33 min</duracion>    
+        <NumCanciones>10</NumCanciones>
+        <fecha>09-05-2025</fecha>
+        <genero>Metal</genero>
+        <discografica>RCA Records</discografica>
+    </album>
+    <album titulo="Tsunami Sea">
+        <artista>Spirit Box</artista>
+        <duracion>49:39 min</duracion>    
+        <NumCanciones>11</NumCanciones>
+        <fecha>07-05-2025</fecha>
+        <genero>Metal</genero>
+        <discografica>Rise Records</discografica>
+    </album>
+    <album titulo="epistolares+">
+        <artista>AKRIILA</artista>
+        <duracion>51:09 min</duracion>    
+        <NumCanciones>18</NumCanciones>
+        <fecha>22-08-2024</fecha>
+        <genero>Drum and Bass</genero>
+        <discografica>Lotus Records</discografica>
+    </album>
+    <album titulo="ATP">
+        <artista>NSQK</artista>
+        <duracion>40:25 min</duracion>    
+        <NumCanciones>17</NumCanciones>
+        <fecha>14-08-2025</fecha>
+        <genero>Synth pop</genero>
+        <discografica>Worldwide Records</discografica>
+    </album>
+    <album titulo="GOD DOES LIKE UGLY">
+        <artista>JID</artista>
+        <duracion>57:29 min</duracion>    
+        <NumCanciones>15</NumCanciones>
+        <fecha>06-08-2025</fecha>
+        <genero>Rap</genero>
+        <discografica>DREAMVILLE Records</discografica>
+    </album>
+    <album titulo="Lo-files">
+        <artista>BRING ME THE HORIZON</artista>
+        <duracion>1:21:42 min</duracion>    
+        <NumCanciones>23</NumCanciones>
+        <fecha>11-07-2025</fecha>
+        <genero>Lofi</genero>
+        <discografica>Sony Music Entreteniment</discografica>
+    </album>
+</musica>

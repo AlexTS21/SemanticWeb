@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="recetario">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="receta" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ingredientes">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ingrediente" maxOccurs="unbounded">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="cantidad" type="xs:positiveInteger" use="required"/>
+                                                <xs:attribute name="unidad" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="litro"/>
+                                                            <xs:enumeration value="unidad"/>
+                                                            <xs:enumeration value="gramos"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="procedimiento">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="paso" type="xs:string" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="detalles">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="duracion" type="xs:string"/>
+                                        <xs:element name="porciones">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="unidad" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="vaso"/>
+                                                            <xs:enumeration value="plato"/>
+                                                            <xs:enumeration value="rebanada"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="nombre" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
