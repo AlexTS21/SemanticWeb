@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ex="http://ejemplo.org/agenda#">
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia0">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Web Semantica</ex:nombre>
+    <ex:creditos>6</ex:creditos>
+    <ex:profesor>MIREYA TOVAR VIDAL</ex:profesor>
+    <ex:nrc>26333</ex:nrc>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia1">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Aplicaciones Multimedia</ex:nombre>
+    <ex:creditos>6</ex:creditos>
+    <ex:profesor>ARLEM ALEIDA CASTILLO AVILA</ex:profesor>
+    <ex:nrc>25245</ex:nrc>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia2">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Programacion Distribuida Aplic</ex:nombre>
+    <ex:creditos>6</ex:creditos>
+    <ex:profesor>ANGEL OMAR MENDOZA ROJAS</ex:profesor>
+    <ex:nrc>25660</ex:nrc>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia3">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Intercom. y Seguridad en Redes</ex:nombre>
+    <ex:creditos>6</ex:creditos>
+    <ex:profesor>ELSA CHAVIRA MARTINEZ</ex:profesor>
+    <ex:nrc>25181</ex:nrc>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia4">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Proyectos I + D I</ex:nombre>
+    <ex:creditos>5</ex:creditos>
+    <ex:profesor>	MARIA DEL CARMEN SANTIAGO DIAZ</ex:profesor>
+    <ex:nrc>26147</ex:nrc>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ejemplo.org/kardex#materia4">
+    <rdf:type rdf:resource="http://ejemplo.org/kardex#Materia"/>
+    <ex:nombre>Servicio Social </ex:nombre>
+    <ex:creditos>10</ex:creditos>
+    <ex:profesor>CARLOS ZAMORA LIMA</ex:profesor>
+    <ex:nrc>37856</ex:nrc>
+  </rdf:Description>
+
+</rdf:RDF>
