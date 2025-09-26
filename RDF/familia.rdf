@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ex="http://ejemplo.org/familia#">
+
+  <!-- Individuo -->
+  <rdf:Description rdf:about="http://ejemplo.org/familia#individuo1">
+    <rdf:type rdf:resource="http://ejemplo.org/familia#Persona"/>
+    <ex:nombre>José</ex:nombre>
+    <ex:nombre>Alejandro</ex:nombre>
+    <ex:paterno>Tejeda</ex:paterno>
+    <ex:materno>Sánchez</ex:materno>
+    <ex:edad rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</ex:edad>
+    <ex:fechaCumpleaños>21-12</ex:fechaCumpleaños>
+  </rdf:Description>
+
+  <!-- Padre -->
+  <rdf:Description rdf:about="http://ejemplo.org/familia#padre1">
+    <rdf:type rdf:resource="http://ejemplo.org/familia#Persona"/>
+    <ex:rol>Padre</ex:rol>
+    <ex:nombre>Cuitlahuac</ex:nombre>
+    <ex:paterno>Tejeda</ex:paterno>
+    <ex:materno>Hernandez</ex:materno>
+    <ex:edad rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51</ex:edad>
+    <ex:fechaCumpleaños>28-12</ex:fechaCumpleaños>
+  </rdf:Description>
+
+  <!-- Madre -->
+  <rdf:Description rdf:about="http://ejemplo.org/familia#madre1">
+    <rdf:type rdf:resource="http://ejemplo.org/familia#Persona"/>
+    <ex:rol>Madre</ex:rol>
+    <ex:nombre>Gabriela</ex:nombre>
+    <ex:nombre>Alejandra</ex:nombre>
+    <ex:paterno>Sánchez</ex:paterno>
+    <ex:materno>Camacho</ex:materno>
+    <ex:edad rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</ex:edad>
+    <ex:fechaCumpleaños>18-03</ex:fechaCumpleaños>
+  </rdf:Description>
+
+  <!-- Hermano -->
+  <rdf:Description rdf:about="http://ejemplo.org/familia#hermano1">
+    <rdf:type rdf:resource="http://ejemplo.org/familia#Persona"/>
+    <ex:rol>Hermano</ex:rol>
+    <ex:nombre>José</ex:nombre>
+    <ex:nombre>Gabriel</ex:nombre>
+    <ex:paterno>Tejeda</ex:paterno>
+    <ex:materno>Sánchez</ex:materno>
+    <ex:edad rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</ex:edad>
+    <ex:fechaCumpleaños>19-02</ex:fechaCumpleaños>
+  </rdf:Description>
+
+</rdf:RDF>

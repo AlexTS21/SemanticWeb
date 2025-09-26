@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:ex="http://example.org/recetario#">
+
+  <!-- ==================== RECETA: Agua de limón ==================== -->
+  <ex:Receta rdf:about="http://example.org/receta/agua-limon">
+    <rdfs:label>Agua de limón</rdfs:label>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/agua"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/limon"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/azucar"/>
+    <ex:paso>Exprimir limones</ex:paso>
+    <ex:paso>Combinar limones con agua</ex:paso>
+    <ex:paso>Disolver el azúcar en el agua</ex:paso>
+    <ex:duracion>5 min</ex:duracion>
+    <ex:porciones unidad="vaso">4</ex:porciones>
+  </ex:Receta>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/agua">
+    <rdfs:label>agua</rdfs:label>
+    <ex:cantidad unidad="litro">1000</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/limon">
+    <rdfs:label>limón</rdfs:label>
+    <ex:cantidad unidad="unidad">5</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/azucar">
+    <rdfs:label>azúcar</rdfs:label>
+    <ex:cantidad unidad="gramos">150</ex:cantidad>
+  </ex:Ingrediente>
+
+  <!-- ==================== RECETA: Sándwich de seitán ==================== -->
+  <ex:Receta rdf:about="http://example.org/receta/sandwich-seitan">
+    <rdfs:label>Sándwich de seitán</rdfs:label>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/pan"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/jamon"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/queso"/>
+    <ex:paso>Poner una rebanada de pan</ex:paso>
+    <ex:paso>Agregar seitán y queso</ex:paso>
+    <ex:paso>Cubrir con otra rebanada</ex:paso>
+    <ex:paso>Dorar el sándwich</ex:paso>
+    <ex:duracion>5 min</ex:duracion>
+    <ex:porciones unidad="plato">1</ex:porciones>
+  </ex:Receta>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/pan">
+    <rdfs:label>pan</rdfs:label>
+    <ex:cantidad unidad="unidad">2</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/jamon">
+    <rdfs:label>jamón</rdfs:label>
+    <ex:cantidad unidad="gramos">50</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/queso">
+    <rdfs:label>queso</rdfs:label>
+    <ex:cantidad unidad="gramos">20</ex:cantidad>
+  </ex:Ingrediente>
+
+  <!-- ==================== RECETA: Ensalada ==================== -->
+  <ex:Receta rdf:about="http://example.org/receta/ensalada">
+    <rdfs:label>Ensalada</rdfs:label>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/lechuga"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/jitomate"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/aguacate"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/limon"/>
+    <ex:paso>Lavar y cortar las verduras</ex:paso>
+    <ex:paso>Mezclar en un bowl</ex:paso>
+    <ex:paso>Exprimir limón</ex:paso>
+    <ex:duracion>7 min</ex:duracion>
+    <ex:porciones unidad="plato">2</ex:porciones>
+  </ex:Receta>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/lechuga">
+    <rdfs:label>lechuga</rdfs:label>
+    <ex:cantidad unidad="unidad">1</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/jitomate">
+    <rdfs:label>jitomate</rdfs:label>
+    <ex:cantidad unidad="unidad">2</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/aguacate">
+    <rdfs:label>aguacate</rdfs:label>
+    <ex:cantidad unidad="unidad">1</ex:cantidad>
+  </ex:Ingrediente>
+
+  <!-- ==================== RECETA: Pan con mantequilla ==================== -->
+  <ex:Receta rdf:about="http://example.org/receta/pan-mantequilla">
+    <rdfs:label>Pan con mantequilla</rdfs:label>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/pan"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/mantequilla"/>
+    <ex:paso>Tostar el pan si se desea</ex:paso>
+    <ex:paso>Untar mantequilla sobre el pan</ex:paso>
+    <ex:duracion>2 min</ex:duracion>
+    <ex:porciones unidad="rebanada">1</ex:porciones>
+  </ex:Receta>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/mantequilla">
+    <rdfs:label>mantequilla</rdfs:label>
+    <ex:cantidad unidad="gramos">20</ex:cantidad>
+  </ex:Ingrediente>
+
+  <!-- ==================== RECETA: Mollete de frijol ==================== -->
+  <ex:Receta rdf:about="http://example.org/receta/mollete-frijol">
+    <rdfs:label>Mollete de frijol</rdfs:label>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/pan"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/frijoles-refritos"/>
+    <ex:ingrediente rdf:resource="http://example.org/ingrediente/queso-manchego"/>
+    <ex:paso>Cortar pan por la mitad</ex:paso>
+    <ex:paso>Untar frijoles en las rebanadas</ex:paso>
+    <ex:paso>Agregar queso encima</ex:paso>
+    <ex:paso>Gratinar queso</ex:paso>
+    <ex:duracion>7 min</ex:duracion>
+    <ex:porciones unidad="rebanada">2</ex:porciones>
+  </ex:Receta>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/frijoles-refritos">
+    <rdfs:label>frijoles refritos</rdfs:label>
+    <ex:cantidad unidad="gramos">100</ex:cantidad>
+  </ex:Ingrediente>
+
+  <ex:Ingrediente rdf:about="http://example.org/ingrediente/queso-manchego">
+    <rdfs:label>queso manchego</rdfs:label>
+    <ex:cantidad unidad="gramos">30</ex:cantidad>
+  </ex:Ingrediente>
+
+</rdf:RDF>

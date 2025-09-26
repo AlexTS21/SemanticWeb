@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:pelicula="http://example.org/pelicula#">
+
+    <!-- Película 1 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Los_tipos_malos_2">
+        <pelicula:titulo>Los tipos malos 2</pelicula:titulo>
+        <pelicula:fecha>2025-08-01</pelicula:fecha>
+        <pelicula:genero>Animación, Comedia</pelicula:genero>
+        <pelicula:director>Pierre Perifel; JP Sans</pelicula:director>
+        <pelicula:actor>Sam Rockwell</pelicula:actor>
+        <pelicula:actor>Marc Maron</pelicula:actor>
+        <pelicula:duracion>104 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 2 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/The_Naked_Gun">
+        <pelicula:titulo>The Naked Gun</pelicula:titulo>
+        <pelicula:fecha>2025-08-01</pelicula:fecha>
+        <pelicula:genero>Comedia, Acción</pelicula:genero>
+        <pelicula:director>Akiva Schaffer</pelicula:director>
+        <pelicula:actor>Liam Neeson</pelicula:actor>
+        <pelicula:actor>Pamela Anderson</pelicula:actor>
+        <pelicula:duracion>85 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 3 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Freakier_Friday">
+        <pelicula:titulo>Freakier Friday</pelicula:titulo>
+        <pelicula:fecha>2025-08-08</pelicula:fecha>
+        <pelicula:genero>Comedia fantástica</pelicula:genero>
+        <pelicula:director>Nisha Ganatra</pelicula:director>
+        <pelicula:actor>Jamie Lee Curtis</pelicula:actor>
+        <pelicula:actor>Lindsay Lohan</pelicula:actor>
+        <pelicula:duracion>111 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 4 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Weapons">
+        <pelicula:titulo>Weapons</pelicula:titulo>
+        <pelicula:fecha>2025-08-08</pelicula:fecha>
+        <pelicula:genero>Terror, Misterio</pelicula:genero>
+        <pelicula:director>Zach Cregger</pelicula:director>
+        <pelicula:actor>Josh Brolin</pelicula:actor>
+        <pelicula:actor>Julia Garner</pelicula:actor>
+        <pelicula:duracion>128 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 5 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Mi_postre_favorito">
+        <pelicula:titulo>Mi postre favorito</pelicula:titulo>
+        <pelicula:fecha>2025-08-08</pelicula:fecha>
+        <pelicula:genero>Comedia dramática, Romántico</pelicula:genero>
+        <pelicula:director>Maryam Moghadam</pelicula:director>
+        <pelicula:actor>Lili Farhadpour</pelicula:actor>
+        <pelicula:actor>Esmaeel Mehrabi</pelicula:actor>
+        <pelicula:duracion>96 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 6 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Los_Super_Elfkins">
+        <pelicula:titulo>Los Súper Elfkins</pelicula:titulo>
+        <pelicula:fecha>2025-08-14</pelicula:fecha>
+        <pelicula:genero>Animación, Comedia</pelicula:genero>
+        <pelicula:director>Ute von Münchow-Pohl</pelicula:director>
+        <pelicula:actor>Maika Monroe</pelicula:actor>
+        <pelicula:actor>Louis Hofmann</pelicula:actor>
+        <pelicula:duracion>76 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 7 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Dangerous_Animals">
+        <pelicula:titulo>Dangerous Animals</pelicula:titulo>
+        <pelicula:fecha>2025-08-14</pelicula:fecha>
+        <pelicula:genero>Suspenso, Acción</pelicula:genero>
+        <pelicula:director>Sean Byrne</pelicula:director>
+        <pelicula:actor>Hassie Harrison</pelicula:actor>
+        <pelicula:actor>Josh Heuston</pelicula:actor>
+        <pelicula:duracion>98 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 8 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Los_Muertimer">
+        <pelicula:titulo>Los Muértimer</pelicula:titulo>
+        <pelicula:fecha>2025-08-14</pelicula:fecha>
+        <pelicula:genero>Comedia de terror</pelicula:genero>
+        <pelicula:director>Álvaro Fernández Armero</pelicula:director>
+        <pelicula:actor>Diego Montejo</pelicula:actor>
+        <pelicula:actor>Iratxe Emparan</pelicula:actor>
+        <pelicula:duracion>90 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 9 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/Heidi_Rescate_del_Lince">
+        <pelicula:titulo>Heidi: El rescate del lince</pelicula:titulo>
+        <pelicula:fecha>2025-08-22</pelicula:fecha>
+        <pelicula:genero>Animación, Aventura, Familiar</pelicula:genero>
+        <pelicula:director>Tobias Schwarz; Aizea Roca</pelicula:director>
+        <pelicula:actor>Max Giermann (voz)</pelicula:actor>
+        <pelicula:actor>Michael McCown (voz)</pelicula:actor>
+        <pelicula:duracion>78 min</pelicula:duracion>
+    </rdf:Description>
+
+    <!-- Película 10 -->
+    <rdf:Description rdf:about="http://example.org/pelicula/The_Roses">
+        <pelicula:titulo>The Roses</pelicula:titulo>
+        <pelicula:fecha>2025-08-29</pelicula:fecha>
+        <pelicula:genero>Comedia Romantica</pelicula:genero>
+        <pelicula:director>Jay Roach</pelicula:director>
+        <pelicula:actor>Olivia Colman</pelicula:actor>
+        <pelicula:actor>Benedict Cumberbatch</pelicula:actor>
+        <pelicula:duracion>105 min</pelicula:duracion>
+    </rdf:Description>
+
+</rdf:RDF>

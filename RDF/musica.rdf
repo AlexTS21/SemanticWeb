@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:musica="http://example.org/musica#">
+
+    <!-- Álbum 1 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Forever_Howlong">
+        <musica:titulo>Forever Howlong</musica:titulo>
+        <musica:artista>Black Country New Road</musica:artista>
+        <musica:duracion>52:15 min</musica:duracion>
+        <musica:NumCanciones>11</musica:NumCanciones>
+        <musica:fecha>2025-04-04</musica:fecha>
+        <musica:genero>Folk</musica:genero>
+        <musica:discografica>Ninja Tune</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 2 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Consuelo_en_domingo">
+        <musica:titulo>Consuelo en domingo</musica:titulo>
+        <musica:artista>Enjambre</musica:artista>
+        <musica:duracion>51:00 min</musica:duracion>
+        <musica:NumCanciones>11</musica:NumCanciones>
+        <musica:fecha>2005-03-08</musica:fecha>
+        <musica:genero>Rock en español</musica:genero>
+        <musica:discografica>Universal Music Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 3 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/ESEXUA">
+        <musica:titulo>ESEXUA</musica:titulo>
+        <musica:artista>FKA twigs</musica:artista>
+        <musica:duracion>42:58 min</musica:duracion>
+        <musica:NumCanciones>11</musica:NumCanciones>
+        <musica:fecha>2025-01-24</musica:fecha>
+        <musica:genero>Pop Alternativo</musica:genero>
+        <musica:discografica>Atlantic Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 4 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Coming_Home">
+        <musica:titulo>Coming Home</musica:titulo>
+        <musica:artista>Ic3peak</musica:artista>
+        <musica:duracion>31:53 min</musica:duracion>
+        <musica:NumCanciones>12</musica:NumCanciones>
+        <musica:fecha>2025-01-31</musica:fecha>
+        <musica:genero>Electronica</musica:genero>
+        <musica:discografica>Ic3peak</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 5 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Even_in_arcadia">
+        <musica:titulo>Even in arcadia</musica:titulo>
+        <musica:artista>Sleep token</musica:artista>
+        <musica:duracion>65:33 min</musica:duracion>
+        <musica:NumCanciones>10</musica:NumCanciones>
+        <musica:fecha>2025-05-09</musica:fecha>
+        <musica:genero>Metal</musica:genero>
+        <musica:discografica>RCA Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 6 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Tsunami_Sea">
+        <musica:titulo>Tsunami Sea</musica:titulo>
+        <musica:artista>Spirit Box</musica:artista>
+        <musica:duracion>49:39 min</musica:duracion>
+        <musica:NumCanciones>11</musica:NumCanciones>
+        <musica:fecha>2025-05-07</musica:fecha>
+        <musica:genero>Metal</musica:genero>
+        <musica:discografica>Rise Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 7 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/epistolares+">
+        <musica:titulo>epistolares+</musica:titulo>
+        <musica:artista>AKRIILA</musica:artista>
+        <musica:duracion>51:09 min</musica:duracion>
+        <musica:NumCanciones>18</musica:NumCanciones>
+        <musica:fecha>2024-08-22</musica:fecha>
+        <musica:genero>Drum and Bass</musica:genero>
+        <musica:discografica>Lotus Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 8 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/ATP">
+        <musica:titulo>ATP</musica:titulo>
+        <musica:artista>NSQK</musica:artista>
+        <musica:duracion>40:25 min</musica:duracion>
+        <musica:NumCanciones>17</musica:NumCanciones>
+        <musica:fecha>2025-08-14</musica:fecha>
+        <musica:genero>Synth pop</musica:genero>
+        <musica:discografica>Worldwide Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 9 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/GOD_DOES_LIKE_UGLY">
+        <musica:titulo>GOD DOES LIKE UGLY</musica:titulo>
+        <musica:artista>JID</musica:artista>
+        <musica:duracion>57:29 min</musica:duracion>
+        <musica:NumCanciones>15</musica:NumCanciones>
+        <musica:fecha>2025-08-06</musica:fecha>
+        <musica:genero>Rap</musica:genero>
+        <musica:discografica>DREAMVILLE Records</musica:discografica>
+    </rdf:Description>
+
+    <!-- Álbum 10 -->
+    <rdf:Description rdf:about="http://example.org/musica/album/Lo-files">
+        <musica:titulo>Lo-files</musica:titulo>
+        <musica:artista>BRING ME THE HORIZON</musica:artista>
+        <musica:duracion>1:21:42 min</musica:duracion>
+        <musica:NumCanciones>23</musica:NumCanciones>
+        <musica:fecha>2025-07-11</musica:fecha>
+        <musica:genero>Lofi</musica:genero>
+        <musica:discografica>Sony Music Entreteniment</musica:discografica>
+    </rdf:Description>
+
+</rdf:RDF>

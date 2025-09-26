@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ex="http://ejemplo.org/biblioteca#">
+
+  <!-- Libro 1 -->
+  <rdf:Description rdf:about="http://ejemplo.org/biblioteca#libro1">
+    <rdf:type rdf:resource="http://ejemplo.org/biblioteca#Libro"/>
+    <ex:titulo>La Novena</ex:titulo>
+    <ex:autor>Marcela Serrano</ex:autor>
+    <ex:genero>Ficción moderna</ex:genero>
+    <ex:sinopsis>Durante la dictadura de Pinochet, 
+        un joven relegado a una zona rural es 
+        acogido por Amelia, dueña del fundo La Novena; 
+        entre ellos surge una compleja relación que 
+        desafía prejuicios y sobrevivencia política.</ex:sinopsis>
+    <ex:fecha_publicacion>2016</ex:fecha_publicacion>
+    <ex:paginas>251</ex:paginas>
+  </rdf:Description>
+
+  <!-- Libro 2 -->
+  <rdf:Description rdf:about="http://ejemplo.org/biblioteca#libro2">
+    <rdf:type rdf:resource="http://ejemplo.org/biblioteca#Libro"/>
+    <ex:titulo>Sigue mi voz</ex:titulo>
+    <ex:autor>Ariana Godoy</ex:autor>
+    <ex:genero>Romance juvenil</ex:genero>
+    <ex:sinopsis>¿Es posible enamorarse de alguien sin 
+        haberlo visto? Klara reflexiona sobre el amor 
+        platónico mientras escucha su programa favorito 
+        de radio “Sigue mi voz”.</ex:sinopsis>
+    <ex:fecha_publicacion>2022</ex:fecha_publicacion>
+    <ex:paginas>336</ex:paginas>
+  </rdf:Description>
+
+  <!-- Libro 3 -->
+  <rdf:Description rdf:about="http://ejemplo.org/biblioteca#libro3">
+    <rdf:type rdf:resource="http://ejemplo.org/biblioteca#Libro"/>
+    <ex:titulo>Fleur</ex:titulo>
+    <ex:autor>Ariana Godoy</ex:autor>
+    <ex:genero>Fantástico, Suspenso</ex:genero>
+    <ex:sinopsis>Parte de la saga Darks, narra en clave 
+        fantasiosa y emotiva la historia de Fleur, 
+        explorando secretos oscuros y dilemas morales en un entorno misterioso.</ex:sinopsis>
+    <ex:fecha_publicacion>2022</ex:fecha_publicacion>
+    <ex:paginas>308</ex:paginas>
+  </rdf:Description>
+
+  <!-- Libro 4 -->
+  <rdf:Description rdf:about="http://ejemplo.org/biblioteca#libro4">
+    <rdf:type rdf:resource="http://ejemplo.org/biblioteca#Libro"/>
+    <ex:titulo>Rebelión en la granja</ex:titulo>
+    <ex:autor>George Orwell</ex:autor>
+    <ex:genero>Sátira política, Fábula</ex:genero>
+    <ex:sinopsis>Una fábula mordaz donde los animales 
+        de una granja se rebelan contra sus opresores 
+        humanos, solo para caer en una nueva tiranía 
+        entre ellos—una crítica al totalitarismo.</ex:sinopsis>
+    <ex:fecha_publicacion>1945</ex:fecha_publicacion>
+    <ex:paginas>160</ex:paginas>
+  </rdf:Description>
+
+  <!-- Libro 5 -->
+  <rdf:Description rdf:about="http://ejemplo.org/biblioteca#libro5">
+    <rdf:type rdf:resource="http://ejemplo.org/biblioteca#Libro"/>
+    <ex:titulo>El programador pragmático</ex:titulo>
+    <ex:autor>Andrew Hunt; David Thomas</ex:autor>
+    <ex:genero>Programación, Ingeniería de software</ex:genero>
+    <ex:sinopsis>Una colección de consejos pragmáticos para desarrolladores, 
+        que promueve adaptabilidad, pensamiento crítico y profesionalismo 
+        en el desarrollo de software.</ex:sinopsis>
+    <ex:fecha_publicacion>1999</ex:fecha_publicacion>
+    <ex:paginas>430</ex:paginas>
+  </rdf:Description>
+
+</rdf:RDF>

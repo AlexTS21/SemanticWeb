@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ex="http://ejemplo.org/agenda#">
+
+  <!-- Contacto 0 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto0">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Cuitalhuac Tejeda Hernandez</ex:nombre>
+    <ex:telefono>2213871254</ex:telefono>
+    <ex:parentezco>familiar</ex:parentezco>
+    <ex:correo>chtejeda@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 1 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto1">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Fatima Margarita Cacalo Huerta</ex:nombre>
+    <ex:telefono>2215621520</ex:telefono>
+    <ex:parentezco>pareja</ex:parentezco>
+    <ex:correo>fatibot@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 2 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto2">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Gabriela Alejandra Sánchez Camacho</ex:nombre>
+    <ex:telefono>2491237843</ex:telefono>
+    <ex:parentezco>familiar</ex:parentezco>
+    <ex:correo>rigos@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 3 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto3">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Gabriel Tejeda Sánchez</ex:nombre>
+    <ex:telefono>2218457382</ex:telefono>
+    <ex:parentezco>familiar</ex:parentezco>
+    <ex:correo>larry123@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 4 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto4">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Alexander Tapia Cortez</ex:nombre>
+    <ex:telefono>2384593493</ex:telefono>
+    <ex:parentezco>amigo</ex:parentezco>
+    <ex:correo>alexgatsby@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 5 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto5">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Alejandra Sánchez Camacho</ex:nombre>
+    <ex:telefono>2213157600</ex:telefono>
+    <ex:parentezco>familiar</ex:parentezco>
+    <ex:correo>isaluz77@gmail.com</ex:correo>
+  </rdf:Description>
+
+  <!-- Contacto 6 -->
+  <rdf:Description rdf:about="http://ejemplo.org/agenda#contacto6">
+    <rdf:type rdf:resource="http://ejemplo.org/agenda#Contacto"/>
+    <ex:nombre>Gerardo Martinez Guzman</ex:nombre>
+    <ex:telefono>2899322542</ex:telefono>
+    <ex:parentezco>trabajo</ex:parentezco>
+    <ex:correo>geramx@gmail.com</ex:correo>
+  </rdf:Description>
+
+</rdf:RDF>
