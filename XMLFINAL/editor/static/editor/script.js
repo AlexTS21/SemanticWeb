@@ -1,125 +1,115 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Retrieve safely encoded JSON
-    const recetas = JSON.parse(document.getElementById("recetas-data").textContent);
-    console.log(recetas);
+ // Dynamic form elements
+function addIngredient() {
+    const container = document.getElementById('ingredients-container');
+    const newRow = document.createElement('div');
+    newRow.className = 'ingredient-row';
+    newRow.innerHTML = `
+        <input type="text" name="ingrediente_nombre[]" placeholder="Nombre" class="form-control">
+        <input type="text" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control">
+        <select name="ingrediente_unidad[]" class="form-control">
+            <option value="ml">ml</option>
+            <option value="gr">gr</option>
+            <option value="unidad">unidad</option>
+        </select>
+        <button type="button" class="btn-remove" onclick="removeIngredient(this)"><i class="fas fa-times"></i></button>
+    `;
+    container.appendChild(newRow);
+}
 
-    const slider = document.getElementById("recipeSlider");
-    const dotsContainer = document.getElementById("dotsContainer");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    let currentSlide = 0;
-
-    // Create recipe cards
-    for (const nombre in recetas) {
-        const recipe = recetas[nombre];
-        
-        const card = document.createElement("div");
-        card.className = "recipe-card";
-        
-        card.innerHTML = `
-            <div class="recipe-header">
-                <h2 class="recipe-title">${nombre}</h2>
-                <span class="recipe-category">${recipe.category || 'General'}</span>
-            </div>
-            <div class="recipe-content">
-                <div class="ingredients">
-                    <h3>Ingredients</h3>
-                    <ul>
-                        ${Array.isArray(recipe.ingredientes) ? 
-                          recipe.ingredientes.map(ingredient => `<li>${ingredient}</li>`).join('') : 
-                          '<li>No ingredients listed</li>'}
-                    </ul>
-                </div>
-                <div class="instructions">
-                    <h3>Instructions</h3>
-                    <ol>
-                        ${Array.isArray(recipe.instrucciones) ? 
-                          recipe.instrucciones.map(instruction => `<li>${instruction}</li>`).join('') : 
-                          '<li>No instructions available</li>'}
-                    </ol>
-                </div>
-            </div>
-            <div class="recipe-meta">
-                <span>Prep time: ${recipe.prepTime || 'Not specified'}</span>
-                <span>Cook time: ${recipe.cookTime || 'Not specified'}</span>
-            </div>
-        `;
-        
-        slider.appendChild(card);
-        
-        // Create dot for this recipe
-        const dot = document.createElement("div");
-        dot.className = "dot";
-        dot.addEventListener("click", () => {
-            goToSlide(Object.keys(recetas).indexOf(nombre));
-        });
-        dotsContainer.appendChild(dot);
+function removeIngredient(button) {
+    if (document.querySelectorAll('.ingredient-row').length > 1) {
+        button.parentElement.remove();
     }
+}
 
-    // Initialize first dot as active
-    if (dotsContainer.children.length > 0) {
-        dotsContainer.children[0].classList.add("active");
+function addStep() {
+    const container = document.getElementById('steps-container');
+    const newRow = document.createElement('div');
+    newRow.className = 'step-row';
+    newRow.innerHTML = `
+        <textarea name="paso[]" placeholder="Paso a paso..." class="form-control"></textarea>
+        <button type="button" class="btn-remove" onclick="removeStep(this)"><i class="fas fa-times"></i></button>
+    `;
+    container.appendChild(newRow);
+}
+
+function removeStep(button) {
+    if (document.querySelectorAll('.step-row').length > 1) {
+        button.parentElement.remove();
     }
+}
 
-    // Navigation functions
-    function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+// Clear form function
+function clearForm() {
+    if (confirm('¿Está seguro de que desea limpiar el formulario? Se perderán todos los datos no guardados.')) {
+        document.getElementById('recipe-form').reset();
         
-        // Update active dot
-        Array.from(dotsContainer.children).forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentSlide);
-        });
-    }
-
-    function nextSlide() {
-        if (currentSlide < Object.keys(recetas).length - 1) {
-            goToSlide(currentSlide + 1);
-        } else {
-            goToSlide(0); // Loop back to first
+        // Clear dynamic fields but keep one of each
+        const ingredientsContainer = document.getElementById('ingredients-container');
+        const stepsContainer = document.getElementById('steps-container');
+        
+        // Keep only first ingredient row
+        while (ingredientsContainer.children.length > 1) {
+            ingredientsContainer.removeChild(ingredientsContainer.lastChild);
         }
-    }
-
-    function prevSlide() {
-        if (currentSlide > 0) {
-            goToSlide(currentSlide - 1);
-        } else {
-            goToSlide(Object.keys(recetas).length - 1); // Loop to last
+        
+        // Keep only first step row
+        while (stepsContainer.children.length > 1) {
+            stepsContainer.removeChild(stepsContainer.lastChild);
         }
-    }
-
-    // Event listeners
-    nextBtn.addEventListener("click", nextSlide);
-    prevBtn.addEventListener("click", prevSlide);
-
-    // Optional: Add keyboard navigation
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") nextSlide();
-        if (e.key === "ArrowLeft") prevSlide();
-    });
-
-    // Optional: Add swipe functionality for touch devices
-    let startX = 0;
-    let endX = 0;
-
-    slider.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener("touchend", (e) => {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const diff = startX - endX;
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
+        
+        // Clear the first rows
+        const firstIngredient = ingredientsContainer.querySelector('.ingredient-row');
+        firstIngredient.querySelectorAll('input').forEach(input => input.value = '');
+        firstIngredient.querySelector('select').selectedIndex = 0;
+        
+        const firstStep = stepsContainer.querySelector('.step-row');
+        firstStep.querySelector('textarea').value = '';
+        
+        // Reset hidden fields for new recipe
+        document.querySelector('input[name="action"]').value = 'add';
+        const nombreOriginal = document.querySelector('input[name="nombre_original"]');
+        if (nombreOriginal) {
+            nombreOriginal.remove();
         }
+        
+        // Update form title
+        document.getElementById('form-title').innerHTML = '<i class="fas fa-plus-circle"></i> Agregar Nueva Receta';
+        const submitButton = document.querySelector('.btn-primary');
+        const icon = submitButton.querySelector('i');
+        icon.nextSibling.textContent = ' Guardar Receta';
+    }
+}
+
+// Auto-focus on recipe name when editing
+document.addEventListener('DOMContentLoaded', function() {
+    const editingRecipeName = document.getElementById('editing-recipe-name');
+    if (editingRecipeName) {
+        editingRecipeName.focus();
     }
 });
+
+// Confirm before leaving if form has changes
+let formInitialState = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('recipe-form');
+    formInitialState = serializeForm(form);
+    
+    form.addEventListener('change', function() {
+        window.onbeforeunload = function() {
+            const currentState = serializeForm(form);
+            if (currentState !== formInitialState) {
+                return 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?';
+            }
+        };
+    });
+    
+    form.addEventListener('submit', function() {
+        window.onbeforeunload = null;
+    });
+});
+
+function serializeForm(form) {
+    return new FormData(form).toString();
+}

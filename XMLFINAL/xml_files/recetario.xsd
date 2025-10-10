@@ -15,9 +15,9 @@
                                                 <xs:attribute name="unidad" use="required">
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:string">
-                                                            <xs:enumeration value="litro"/>
+                                                            <xs:enumeration value="ml"/>
                                                             <xs:enumeration value="unidad"/>
-                                                            <xs:enumeration value="gramos"/>
+                                                            <xs:enumeration value="gr"/>
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:attribute>
@@ -46,7 +46,6 @@
                                                         <xs:restriction base="xs:string">
                                                             <xs:enumeration value="vaso"/>
                                                             <xs:enumeration value="plato"/>
-                                                            <xs:enumeration value="rebanada"/>
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:attribute>

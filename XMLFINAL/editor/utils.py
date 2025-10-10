@@ -5,7 +5,7 @@ from django.conf import settings
 class Recetario:
     def __init__(self, path=None):
         if path is None:
-            # Default path relative to Django project
+            # Path to use file in djagno project
             path = os.path.join(settings.BASE_DIR, 'xml_files', 'recetario.xml')
         self.path = path
         self.tree = etree.parse(path)

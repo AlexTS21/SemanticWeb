@@ -12,7 +12,7 @@
     <div class="container">
         <!-- Left Side - Operations -->
         <div class="operations-panel">
-            <h1><i class="fas fa-utensils"></i> Recetario</h1>
+            <h1> Opciones</h1>
             
             <!-- Single Form for Add/Edit -->
             <div class="form-section">
@@ -51,9 +51,11 @@
                                     <input type="text" name="ingrediente_cantidad[]" 
                                            value="{{ ingrediente.cantidad }}" 
                                            placeholder="Cantidad" class="form-control">
-                                    <input type="text" name="ingrediente_unidad[]" 
-                                           value="{{ ingrediente.unidad }}" 
-                                           placeholder="Unidad" class="form-control">
+                                    <select name="ingrediente_unidad[]" class="form-control">
+                                        <option value="ml" {% if ingrediente.unidad == 'ml' %}selected{% endif %}>ml</option>
+                                        <option value="gr" {% if ingrediente.unidad == 'gr' %}selected{% endif %}>gr</option>
+                                        <option value="unidad" {% if ingrediente.unidad == 'unidad' %}selected{% endif %}>unidad</option>
+                                    </select>
                                     <button type="button" class="btn-remove" onclick="removeIngredient(this)">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -63,7 +65,11 @@
                                 <div class="ingredient-row">
                                     <input type="text" name="ingrediente_nombre[]" placeholder="Nombre" class="form-control">
                                     <input type="text" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control">
-                                    <input type="text" name="ingrediente_unidad[]" placeholder="Unidad" class="form-control">
+                                    <select name="ingrediente_unidad[]" class="form-control">
+                                        <option value="ml">ml</option>
+                                        <option value="gr">gr</option>
+                                        <option value="unidad">unidad</option>
+                                    </select>
                                     <button type="button" class="btn-remove" onclick="removeIngredient(this)">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -114,9 +120,11 @@
                             <input type="text" name="porciones_cantidad" 
                                    value="{{ editing_recipe.detalles.porciones.cantidad|default:'' }}" 
                                    placeholder="Cantidad" class="form-control">
-                            <input type="text" name="porciones_unidad" 
-                                   value="{{ editing_recipe.detalles.porciones.unidad|default:'' }}" 
-                                   placeholder="Unidad" class="form-control">
+                            <select name="porciones_unidad" class="form-control">
+                                <option value="">Seleccione unidad</option>
+                                <option value="vaso" {% if editing_recipe.detalles.porciones.unidad == 'vaso' %}selected{% endif %}>vaso</option>
+                                <option value="plato" {% if editing_recipe.detalles.porciones.unidad == 'plato' %}selected{% endif %}>plato</option>
+                            </select>
                         </div>
                     </div>
 
@@ -138,6 +146,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
 
         <!-- Right Side - Recipes Display -->
@@ -226,112 +235,6 @@
         </div>
     </div>
 
-    <script>
-        // Dynamic form elements
-        function addIngredient() {
-            const container = document.getElementById('ingredients-container');
-            const newRow = document.createElement('div');
-            newRow.className = 'ingredient-row';
-            newRow.innerHTML = `
-                <input type="text" name="ingrediente_nombre[]" placeholder="Nombre" class="form-control">
-                <input type="text" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control">
-                <input type="text" name="ingrediente_unidad[]" placeholder="Unidad" class="form-control">
-                <button type="button" class="btn-remove" onclick="removeIngredient(this)"><i class="fas fa-times"></i></button>
-            `;
-            container.appendChild(newRow);
-        }
-
-        function removeIngredient(button) {
-            if (document.querySelectorAll('.ingredient-row').length > 1) {
-                button.parentElement.remove();
-            }
-        }
-
-        function addStep() {
-            const container = document.getElementById('steps-container');
-            const newRow = document.createElement('div');
-            newRow.className = 'step-row';
-            newRow.innerHTML = `
-                <textarea name="paso[]" placeholder="Paso a paso..." class="form-control"></textarea>
-                <button type="button" class="btn-remove" onclick="removeStep(this)"><i class="fas fa-times"></i></button>
-            `;
-            container.appendChild(newRow);
-        }
-
-        function removeStep(button) {
-            if (document.querySelectorAll('.step-row').length > 1) {
-                button.parentElement.remove();
-            }
-        }
-
-        // Clear form function
-        function clearForm() {
-            if (confirm('¿Está seguro de que desea limpiar el formulario? Se perderán todos los datos no guardados.')) {
-                document.getElementById('recipe-form').reset();
-                
-                // Clear dynamic fields but keep one of each
-                const ingredientsContainer = document.getElementById('ingredients-container');
-                const stepsContainer = document.getElementById('steps-container');
-                
-                // Keep only first ingredient row
-                while (ingredientsContainer.children.length > 1) {
-                    ingredientsContainer.removeChild(ingredientsContainer.lastChild);
-                }
-                
-                // Keep only first step row
-                while (stepsContainer.children.length > 1) {
-                    stepsContainer.removeChild(stepsContainer.lastChild);
-                }
-                
-                // Clear the first rows
-                const firstIngredient = ingredientsContainer.querySelector('.ingredient-row');
-                firstIngredient.querySelectorAll('input').forEach(input => input.value = '');
-                
-                const firstStep = stepsContainer.querySelector('.step-row');
-                firstStep.querySelector('textarea').value = '';
-                
-                // Reset hidden fields for new recipe
-                document.querySelector('input[name="action"]').value = 'add';
-                document.querySelector('input[name="nombre_original"]')?.remove();
-                
-                // Update form title
-                document.getElementById('form-title').innerHTML = '<i class="fas fa-plus-circle"></i> Agregar Nueva Receta';
-                document.querySelector('.btn-primary i').nextSibling.textContent = 'Guardar Receta';
-            }
-        }
-
-        // Auto-focus on recipe name when editing
-        document.addEventListener('DOMContentLoaded', function() {
-            const editingRecipeName = document.getElementById('editing-recipe-name');
-            if (editingRecipeName) {
-                editingRecipeName.focus();
-            }
-        });
-
-        // Confirm before leaving if form has changes
-        let formInitialState = '';
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('recipe-form');
-            formInitialState = serializeForm(form);
-            
-            form.addEventListener('change', function() {
-                window.onbeforeunload = function() {
-                    const currentState = serializeForm(form);
-                    if (currentState !== formInitialState) {
-                        return 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?';
-                    }
-                };
-            });
-            
-            form.addEventListener('submit', function() {
-                window.onbeforeunload = null;
-            });
-        });
-
-        function serializeForm(form) {
-            return new FormData(form).toString();
-        }
-    </script>
+    <script src="{% static 'editor/script.js' %}"></script>
 </body>
 </html>
