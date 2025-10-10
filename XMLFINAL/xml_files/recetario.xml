@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<recetario>
+    <receta nombre="Sandwich de seitan">
+        <ingredientes>
+            <ingrediente cantidad="2" unidad="unidad">pan</ingrediente>
+            <ingrediente cantidad="50" unidad="gramos">jamon</ingrediente>
+            <ingrediente cantidad="20" unidad="gramos">queso</ingrediente>
+        </ingredientes>
+        <procedimiento>
+            <paso>Poner una rebanada de pan</paso>
+            <paso>Agregar seitan y queso</paso>
+            <paso>Cubrir con otra rebanada</paso>
+            <paso>Dorar el sandwich</paso>
+        </procedimiento>
+        <detalles>
+            <duracion>5 min</duracion>
+            <porciones unidad="plato">1</porciones>
+        </detalles>
+    </receta>
+
+    <receta nombre="Ensalada"><ingredientes><ingrediente cantidad="1" unidad="unidad">lechuga</ingrediente><ingrediente cantidad="2" unidad="unidad">jitomate</ingrediente><ingrediente cantidad="1" unidad="unidad">aguacate</ingrediente><ingrediente cantidad="1" unidad="unidad">limon</ingrediente></ingredientes><procedimiento><paso>Lavar y cortar las verduras</paso><paso>Mezclar en un bowl</paso><paso>Exprimir limon</paso></procedimiento><detalles><duracion>7 min</duracion><porciones unidad="plato">4</porciones></detalles></receta><receta nombre="Pan con mantequilla"><ingredientes><ingrediente cantidad="1" unidad="unidad">pan</ingrediente><ingrediente cantidad="21" unidad="gramos">mantequilla</ingrediente></ingredientes><procedimiento><paso>Tostar el pan si se desea</paso><paso>Untar mantequilla sobre el pan</paso></procedimiento><detalles><duracion>2 min</duracion><porciones unidad="rebanada">1</porciones></detalles></receta><receta nombre="Agua de limon"><ingredientes><ingrediente cantidad="1000" unidad="litro">agua</ingrediente><ingrediente cantidad="5" unidad="unidad">limon</ingrediente><ingrediente cantidad="150" unidad="gramos">azucar</ingrediente></ingredientes><procedimiento><paso>Exprimir limones</paso><paso>Combinar limones con agua</paso><paso>Disolver el azucar en el agua</paso></procedimiento><detalles><duracion>5 min</duracion><porciones unidad="vaso">4</porciones></detalles></receta></recetario>
