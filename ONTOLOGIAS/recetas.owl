@@ -1,0 +1,286 @@
+@prefix : <http://www.semanticweb.org/recetario#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:RecetarioOntology rdf:type owl:Ontology ;
+    rdfs:label "Ontología para Recetario de Cocina" ;
+    rdfs:comment "Una ontología que modela recetas de cocina, sus ingredientes, pasos y utensilios" .
+
+### CLASES PRINCIPALES ###
+:Receta rdf:type owl:Class ;
+    rdfs:label "Receta" ;
+    rdfs:comment "Una receta de cocina con todos sus componentes" ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty :tienePaso ;
+        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass :Paso
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty :tieneIngrediente ;
+        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass :Ingrediente
+    ] .
+
+:Ingrediente rdf:type owl:Class ;
+    rdfs:label "Ingrediente" ;
+    rdfs:comment "Un ingrediente utilizado en una receta" .
+
+:Paso rdf:type owl:Class ;
+    rdfs:label "Paso" ;
+    rdfs:comment "Un paso individual en la preparación de una receta" ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty :instruccion ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+:Utensilio rdf:type owl:Class ;
+    rdfs:label "Utensilio" ;
+    rdfs:comment "Un utensilio de cocina utilizado en la preparación" .
+
+:UnidadMedida rdf:type owl:Class ;
+    rdfs:label "Unidad de Medida" ;
+    rdfs:comment "Unidad para medir cantidades de ingredientes" .
+
+### PROPIEDADES DE DATOS ###
+:nombre rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:string ;
+    rdfs:label "nombre" .
+
+:descripcion rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:string ;
+    rdfs:label "descripción" .
+
+:tiempoPreparacion rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:integer ;
+    rdfs:label "tiempo de preparación" ;
+    rdfs:comment "Tiempo total de preparación en minutos" .
+
+:tiempoCoccion rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:integer ;
+    rdfs:label "tiempo de cocción" ;
+    rdfs:comment "Tiempo de cocción en minutos" .
+
+:porciones rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:integer ;
+    rdfs:label "porciones" ;
+    rdfs:comment "Número de porciones que rinde la receta" .
+
+:dificultad rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:string ;
+    rdfs:label "dificultad" ;
+    rdfs:comment "Nivel de dificultad (Fácil, Medio, Difícil)" .
+
+:numeroPaso rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range xsd:integer ;
+    rdfs:label "número de paso" .
+
+:instruccion rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range xsd:string ;
+    rdfs:label "instrucción" .
+
+:nombreIngrediente rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Ingrediente ;
+    rdfs:range xsd:string ;
+    rdfs:label "nombre del ingrediente" .
+
+:cantidad rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Ingrediente ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "cantidad" .
+
+:nombreUtensilio rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Utensilio ;
+    rdfs:range xsd:string ;
+    rdfs:label "nombre del utensilio" .
+
+:simboloUnidad rdf:type owl:DatatypeProperty ;
+    rdfs:domain :UnidadMedida ;
+    rdfs:range xsd:string ;
+    rdfs:label "símbolo de unidad" .
+
+### PROPIEDADES DE OBJETO ###
+:tienePaso rdf:type owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :Paso ;
+    rdfs:label "tiene paso" ;
+    owl:inverseOf :esPasoDe .
+
+:esPasoDe rdf:type owl:ObjectProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range :Receta ;
+    rdfs:label "es paso de" .
+
+:tieneIngrediente rdf:type owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :Ingrediente ;
+    rdfs:label "tiene ingrediente" ;
+    owl:inverseOf :esIngredienteDe .
+
+:esIngredienteDe rdf:type owl:ObjectProperty ;
+    rdfs:domain :Ingrediente ;
+    rdfs:range :Receta ;
+    rdfs:label "es ingrediente de" .
+
+:requiereUtensilio rdf:type owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :Utensilio ;
+    rdfs:label "requiere utensilio" ;
+    owl:inverseOf :esUsadoEn .
+
+:esUsadoEn rdf:type owl:ObjectProperty ;
+    rdfs:domain :Utensilio ;
+    rdfs:range :Receta ;
+    rdfs:label "es usado en" .
+
+:tieneUnidad rdf:type owl:ObjectProperty ;
+    rdfs:domain :Ingrediente ;
+    rdfs:range :UnidadMedida ;
+    rdfs:label "tiene unidad" ;
+    owl:inverseOf :esUnidadDe .
+
+:esUnidadDe rdf:type owl:ObjectProperty ;
+    rdfs:domain :UnidadMedida ;
+    rdfs:range :Ingrediente ;
+    rdfs:label "es unidad de" .
+
+:usaUtensilioEnPaso rdf:type owl:ObjectProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range :Utensilio ;
+    rdfs:label "usa utensilio en paso" .
+
+### UNIDADES DE MEDIDA ###
+:Gramo rdf:type :UnidadMedida ;
+    :simboloUnidad "g" .
+
+:Mililitro rdf:type :UnidadMedida ;
+    :simboloUnidad "ml" .
+
+:Cucharada rdf:type :UnidadMedida ;
+    :simboloUnidad "cda" .
+
+:Unidad rdf:type :UnidadMedida ;
+    :simboloUnidad "unidad" .
+
+:Pizca rdf:type :UnidadMedida ;
+    :simboloUnidad "pizca" .
+
+### INGREDIENTES BÁSICOS ###
+:Patata rdf:type :Ingrediente ;
+    :nombreIngrediente "Patata" .
+
+:Cebolla rdf:type :Ingrediente ;
+    :nombreIngrediente "Cebolla" .
+
+:Huevo rdf:type :Ingrediente ;
+    :nombreIngrediente "Huevo" .
+
+:AceiteOliva rdf:type :Ingrediente ;
+    :nombreIngrediente "Aceite de oliva" .
+
+:Sal rdf:type :Ingrediente ;
+    :nombreIngrediente "Sal" .
+
+### UTENSILIOS ###
+:Espatula rdf:type :Utensilio ;
+    :nombreUtensilio "Espátula" .
+
+:Cuchillo rdf:type :Utensilio ;
+    :nombreUtensilio "Cuchillo de chef" .
+
+:Sarten rdf:type :Utensilio ;
+    :nombreUtensilio "Sartén" .
+
+:Batidora rdf:type :Utensilio ;
+    :nombreUtensilio "Batidora" .
+
+:Bol rdf:type :Utensilio ;
+    :nombreUtensilio "Bol" .
+
+:TablaCortar rdf:type :Utensilio ;
+    :nombreUtensilio "Tabla de cortar" .
+
+### RECETA: TORTILLA DE PATATAS ###
+:TortillaPatatas rdf:type :Receta ;
+    :nombre "Tortilla de Patatas" ;
+    :descripcion "Clásica tortilla española de patatas y cebolla" ;
+    :tiempoPreparacion 20 ;
+    :tiempoCoccion 30 ;
+    :porciones 4 ;
+    :dificultad "Media" ;
+    :tieneIngrediente [
+        :cantidad 500 ;
+        :tieneUnidad :Gramo ;
+        :esIngredienteDe :TortillaPatatas ;
+        rdf:type :Ingrediente ;
+        owl:sameAs :Patata
+    ], [
+        :cantidad 1 ;
+        :tieneUnidad :Unidad ;
+        :esIngredienteDe :TortillaPatatas ;
+        rdf:type :Ingrediente ;
+        owl:sameAs :Cebolla
+    ], [
+        :cantidad 6 ;
+        :tieneUnidad :Unidad ;
+        :esIngredienteDe :TortillaPatatas ;
+        rdf:type :Ingrediente ;
+        owl:sameAs :Huevo
+    ], [
+        :cantidad 200 ;
+        :tieneUnidad :Mililitro ;
+        :esIngredienteDe :TortillaPatatas ;
+        rdf:type :Ingrediente ;
+        owl:sameAs :AceiteOliva
+    ], [
+        :cantidad 1 ;
+        :tieneUnidad :Pizca ;
+        :esIngredienteDe :TortillaPatatas ;
+        rdf:type :Ingrediente ;
+        owl:sameAs :Sal
+    ] ;
+    :tienePaso :Paso1Tortilla, :Paso2Tortilla, :Paso3Tortilla, :Paso4Tortilla, :Paso5Tortilla ;
+    :requiereUtensilio :Sarten, :Cuchillo, :TablaCortar, :Espatula, :Bol, :Batidora .
+
+### PASOS DE PREPARACIÓN ###
+:Paso1Tortilla rdf:type :Paso ;
+    :numeroPaso 1 ;
+    :instruccion "Pelar y cortar las patatas en rodajas finas. Picar la cebolla en juliana." ;
+    :esPasoDe :TortillaPatatas ;
+    :usaUtensilioEnPaso :Cuchillo, :TablaCortar .
+
+:Paso2Tortilla rdf:type :Paso ;
+    :numeroPaso 2 ;
+    :instruccion "Calentar el aceite en una sartén y freír las patatas y cebolla a fuego medio hasta que estén tiernas (unos 15-20 minutos)." ;
+    :esPasoDe :TortillaPatatas ;
+    :usaUtensilioEnPaso :Sarten .
+
+:Paso3Tortilla rdf:type :Paso ;
+    :numeroPaso 3 ;
+    :instruccion "En un bol, batir los huevos con la sal. Escurrir las patatas y cebolla del aceite y mezclarlas con los huevos batidos." ;
+    :esPasoDe :TortillaPatatas ;
+    :usaUtensilioEnPaso :Bol, :Batidora .
+
+:Paso4Tortilla rdf:type :Paso ;
+    :numeroPaso 4 ;
+    :instruccion "Verter la mezcla en una sartén con un poco de aceite caliente. Cocinar a fuego medio-bajo durante 4-5 minutos." ;
+    :esPasoDe :TortillaPatatas ;
+    :usaUtensilioEnPaso :Sarten .
+
+:Paso5Tortilla rdf:type :Paso ;
+    :numeroPaso 5 ;
+    :instruccion "Dar la vuelta a la tortilla con ayuda de un plato y cocinar por el otro lado durante 3-4 minutos más hasta que esté dorada." ;
+    :esPasoDe :TortillaPatatas ;
+    :usaUtensilioEnPaso :Espatula .
