@@ -1,0 +1,45 @@
+Recetas y su duracion--------------------------------------------------------------------
+PREFIX : <http://www.semanticweb.org/recetario#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+PREFIX : <http://www.semanticweb.org/recetario#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (STR(?recetaNombre) AS ?nombre) (STR(?duracion) AS ?minutos)
+WHERE {
+  ?receta a :Receta ;
+          :nombre ?recetaNombre ;
+          :duracionMinutos ?duracion .
+}
+ORDER BY ?duracion ?recetaNombre
+
+Receta y su dificultad--------------------------------------------------------------------
+PREFIX : <http://www.semanticweb.org/recetario#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (STR(?recetaNombre) AS ?nombre) (STR(?dificultad) AS ?nivelDificultad)
+WHERE {
+  ?receta a :Receta ;
+          :nombre ?recetaNombre ;
+          :dificultad ?dificultad .
+}
+ORDER BY ?dificultad ?recetaNombre
+
+Recetas con sus ingredientes y cantidades--------------------------------------------------
+PREFIX : <http://www.semanticweb.org/recetario#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?recetaNombre ?ingredienteNombre ?cantidad ?unidad
+WHERE {
+  ?receta a :Receta ;
+          :nombre ?recetaNombre ;
+          :tieneIngrediente ?ingredienteReceta .
+  
+  ?ingredienteReceta :cantidad ?cantidad ;
+                    :tieneUnidadMedida ?unidadMedida ;
+                    :usaIngrediente ?ingredientePrincipal .
+  
+  ?unidadMedida rdfs:label ?unidad .
+  ?ingredientePrincipal rdfs:label ?ingredienteNombre .
+}
+ORDER BY ?recetaNombre ?ingredienteNombre

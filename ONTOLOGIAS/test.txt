@@ -1,0 +1,17 @@
+{
+  "personas": [
+    {
+      "id": "Juan",
+      "type": "Person",
+      "name": "Juan Pérez",
+      "age": 30,
+      "knows": ["María"]
+    },
+    {
+      "id": "María",
+      "type": "Person", 
+      "name": "María García",
+      "knows": ["Juan"]
+    }
+  ]
+}
