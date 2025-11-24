@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:geo="http://www.ejemplo.org/geografia#">
+
+    <!-- ===== Clases ===== -->
+
+    <rdfs:Class rdf:about="geo:Continent">
+        <rdfs:label>Continente</rdfs:label>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="geo:Country">
+        <rdfs:label>País</rdfs:label>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="geo:State">
+        <rdfs:label>Estado</rdfs:label>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="geo:City">
+        <rdfs:label>Ciudad</rdfs:label>
+    </rdfs:Class>
+
+    <!-- ===== Propiedades ===== -->
+
+    <!-- Un continente tiene países -->
+    <rdf:Property rdf:about="geo:hasCountry">
+        <rdfs:label>tiene país</rdfs:label>
+        <rdfs:domain rdf:resource="geo:Continent"/>
+        <rdfs:range rdf:resource="geo:Country"/>
+    </rdf:Property>
+
+    <!-- Un país pertenece a un continente -->
+    <rdf:Property rdf:about="geo:isInContinent">
+        <rdfs:label>está en continente</rdfs:label>
+        <rdfs:domain rdf:resource="geo:Country"/>
+        <rdfs:range rdf:resource="geo:Continent"/>
+    </rdf:Property>
+
+    <!-- Un país tiene estados -->
+    <rdf:Property rdf:about="geo:hasState">
+        <rdfs:label>tiene estado</rdfs:label>
+        <rdfs:domain rdf:resource="geo:Country"/>
+        <rdfs:range rdf:resource="geo:State"/>
+    </rdf:Property>
+
+    <!-- Un estado pertenece a un país -->
+    <rdf:Property rdf:about="geo:isInCountry">
+        <rdfs:label>está en país</rdfs:label>
+        <rdfs:domain rdf:resource="geo:State"/>
+        <rdfs:range rdf:resource="geo:Country"/>
+    </rdf:Property>
+
+    <!-- Un estado tiene ciudades -->
+    <rdf:Property rdf:about="geo:hasCity">
+        <rdfs:label>tiene ciudad</rdfs:label>
+        <rdfs:domain rdf:resource="geo:State"/>
+        <rdfs:range rdf:resource="geo:City"/>
+    </rdf:Property>
+
+    <!-- Una ciudad pertenece a un estado -->
+    <rdf:Property rdf:about="geo:isInState">
+        <rdfs:label>está en estado</rdfs:label>
+        <rdfs:domain rdf:resource="geo:City"/>
+        <rdfs:range rdf:resource="geo:State"/>
+    </rdf:Property>
+
+    <!-- ===== Individuos (ejemplos) ===== -->
+
+    <!-- Continente -->
+    <geo:Continent rdf:about="geo:America">
+        <rdfs:label>América</rdfs:label>
+    </geo:Continent>
+
+    <!-- País -->
+    <geo:Country rdf:about="geo:Mexico">
+        <rdfs:label>México</rdfs:label>
+        <geo:isInContinent rdf:resource="geo:America"/>
+    </geo:Country>
+
+    <!-- Relación Continente -> País -->
+    <geo:hasCountry rdf:about="geo:rel1">
+        <rdf:subject rdf:resource="geo:America"/>
+        <rdf:object rdf:resource="geo:Mexico"/>
+    </geo:hasCountry>
+
+    <!-- Estado -->
+    <geo:State rdf:about="geo:Puebla">
+        <rdfs:label>Puebla</rdfs:label>
+        <geo:isInCountry rdf:resource="geo:Mexico"/>
+    </geo:State>
+
+    <!-- Ciudad -->
+    <geo:City rdf:about="geo:PueblaCity">
+        <rdfs:label>Ciudad de Puebla</rdfs:label>
+        <geo:isInState rdf:resource="geo:Puebla"/>
+    </geo:City>
+
+</rdf:RDF>

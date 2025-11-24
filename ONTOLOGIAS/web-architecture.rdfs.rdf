@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ex="http://www.ejemplo.org/web#">
+
+    <!-- Clases -->
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#WebApplication"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#WebBrowser"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#WebServer"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#Protocol"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#DomainNameServer"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#CGIProgram"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#Database"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#ConfigurationFile"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#Format"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#ProgrammingLanguage"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/web#Library"/>
+
+    <!-- Propiedades -->
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#isAccessedThrough"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#runsOn"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#communicatesUsing"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#launches"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#getHostNamesUsing"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#getsResultsFrom"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#formatsResultsIn"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#isWrittenIn"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#isConfiguredBy"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/web#needs"/>
+
+    <!-- Instancias -->
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#MyWebApp">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#WebApplication"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#Browser">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#WebBrowser"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#Server">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#WebServer"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#HTTP_TCP_IP">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#Protocol"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#DNS">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#DomainNameServer"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#CGI">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#CGIProgram"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#DB">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#Database"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#HTML">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#Format"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#Perl">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#ProgrammingLanguage"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#ServerConfig">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#ConfigurationFile"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#DLL">
+        <rdf:type rdf:resource="http://www.ejemplo.org/web#Library"/>
+    </rdf:Description>
+
+    <!-- Relaciones -->
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#MyWebApp">
+        <ex:isAccessedThrough rdf:resource="http://www.ejemplo.org/web#Browser"/>
+        <ex:runsOn rdf:resource="http://www.ejemplo.org/web#Server"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#Browser">
+        <ex:communicatesUsing rdf:resource="http://www.ejemplo.org/web#HTTP_TCP_IP"/>
+        <ex:needs rdf:resource="http://www.ejemplo.org/web#DLL"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#HTTP_TCP_IP">
+        <ex:getHostNamesUsing rdf:resource="http://www.ejemplo.org/web#DNS"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#Server">
+        <ex:launches rdf:resource="http://www.ejemplo.org/web#CGI"/>
+        <ex:isConfiguredBy rdf:resource="http://www.ejemplo.org/web#ServerConfig"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/web#CGI">
+        <ex:getsResultsFrom rdf:resource="http://www.ejemplo.org/web#DB"/>
+        <ex:formatsResultsIn rdf:resource="http://www.ejemplo.org/web#HTML"/>
+        <ex:isWrittenIn rdf:resource="http://www.ejemplo.org/web#Perl"/>
+    </rdf:Description>
+
+</rdf:RDF>

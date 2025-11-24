@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ex="http://www.ejemplo.org/clinical#">
+
+    <!-- Clases -->
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Panel"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Test"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#LaboratoryTestOrder"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#USAddress"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Person"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Patient"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Relative"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#FamilyHistory"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#StructuredTestResult"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#MolecularDiagnosticTestResult"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Disease"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Mutation"/>
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Gene"/>
+
+    <!-- Subclases -->
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Patient">
+        <rdfs:subClassOf rdf:resource="http://www.ejemplo.org/clinical#Person"/>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="http://www.ejemplo.org/clinical#Relative">
+        <rdfs:subClassOf rdf:resource="http://www.ejemplo.org/clinical#Person"/>
+    </rdfs:Class>
+
+    <!-- Propiedades -->
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#testPanel"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#test"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#payorAddress"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#recipientAddress"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasAddress"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasPatient"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#associatedResult"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasStructuredTestResult"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#suffersFrom"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasFamilyHistory"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#isRelatedTo"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasMolecularDiagnosticTestResult"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#indicatesDisease"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasMutation"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#isMutationOf"/>
+    <rdf:Property rdf:about="http://www.ejemplo.org/clinical#hasGene"/>
+
+    <!-- Instancias -->
+    <ex:Panel rdf:about="http://www.ejemplo.org/clinical#BasicPanel"/>
+    <ex:Test rdf:about="http://www.ejemplo.org/clinical#BloodTest"/>
+    <ex:LaboratoryTestOrder rdf:about="http://www.ejemplo.org/clinical#Order1"/>
+    <ex:Patient rdf:about="http://www.ejemplo.org/clinical#Patient1"/>
+    <ex:Disease rdf:about="http://www.ejemplo.org/clinical#Cancer"/>
+    <ex:Gene rdf:about="http://www.ejemplo.org/clinical#BRCA1"/>
+    <ex:Mutation rdf:about="http://www.ejemplo.org/clinical#Mutation1"/>
+
+    <!-- Relaciones correctas en RDF/XML -->
+    <rdf:Description rdf:about="http://www.ejemplo.org/clinical#BasicPanel">
+        <ex:test rdf:resource="http://www.ejemplo.org/clinical#BloodTest"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/clinical#BloodTest">
+        <ex:associatedResult rdf:resource="http://www.ejemplo.org/clinical#Result1"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/clinical#Patient1">
+        <ex:suffersFrom rdf:resource="http://www.ejemplo.org/clinical#Cancer"/>
+        <ex:hasGene rdf:resource="http://www.ejemplo.org/clinical#BRCA1"/>
+        <ex:hasMutation rdf:resource="http://www.ejemplo.org/clinical#Mutation1"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.ejemplo.org/clinical#Mutation1">
+        <ex:isMutationOf rdf:resource="http://www.ejemplo.org/clinical#BRCA1"/>
+    </rdf:Description>
+
+</rdf:RDF>
