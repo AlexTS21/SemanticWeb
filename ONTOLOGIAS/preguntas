@@ -1,0 +1,67 @@
+SELECT ?continent
+WHERE {
+  ?continent a geo:Continent .
+}
+
+SELECT ?country
+WHERE {
+  geo:America geo:hasCountry ?country .
+}
+
+SELECT ?state
+WHERE {
+  geo:Mexico geo:hasState ?state .
+}
+SELECT ?city
+WHERE {
+  geo:Puebla geo:hasCity ?city .
+}
+SELECT ?state ?country ?continent
+WHERE {
+  geo:PueblaCity geo:isInState ?state .
+  ?state geo:isInCountry ?country .
+  ?country geo:isInContinent ?continent .
+}
+
+SELECT ?patient
+WHERE {
+  ?patient a ex:Patient .
+}
+SELECT ?disease
+WHERE {
+  ex:Patient1 ex:suffersFrom ?disease .
+}
+SELECT ?gene
+WHERE {
+  ex:Patient1 ex:hasGene ?gene .
+}
+SELECT ?mutation ?gene
+WHERE {
+  ?mutation ex:isMutationOf ?gene .
+}
+SELECT ?test
+WHERE {
+  ex:BasicPanel ex:test ?test .
+}
+
+
+SELECT ?class
+WHERE {
+  ?class a rdfs:Class .
+}
+SELECT ?property
+WHERE {
+  ?property a rdf:Property .
+}
+SELECT ?protocol
+WHERE {
+  ex:Browser ex:communicatesUsing ?protocol .
+}
+SELECT ?program
+WHERE {
+  ex:Server ex:launches ?program .
+}
+SELECT ?database
+WHERE {
+  ex:CGI ex:getsResultsFrom ?database .
+}
