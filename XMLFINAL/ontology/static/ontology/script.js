@@ -329,3 +329,189 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(loadDraft, 1000);
     }
 });
+
+// Search functionality
+function initializeSearch() {
+    const searchInput = document.getElementById('search-input');
+    const clearSearch = document.getElementById('clear-search');
+    const resultCount = document.getElementById('result-count');
+    const recipesGrid = document.getElementById('recipes-grid');
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    
+    if (!searchInput) return;
+    
+    const totalRecipes = recipeCards.length;
+    
+    // Update result count
+    function updateResultCount(visibleCount) {
+        if (resultCount) {
+            if (visibleCount === 0) {
+                resultCount.textContent = 'No se encontraron recetas';
+                resultCount.style.color = '#ff4757';
+            } else {
+                resultCount.textContent = `${visibleCount} de ${totalRecipes} recetas encontradas`;
+                resultCount.style.color = '#6c757d';
+            }
+        }
+    }
+    
+    // Clear search
+    function clearSearchHandler() {
+        searchInput.value = '';
+        filterRecipes('');
+        clearSearch.classList.add('hidden');
+        searchInput.focus();
+    }
+    
+    // Filter recipes based on search term
+    function filterRecipes(searchTerm) {
+        const term = searchTerm.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        recipeCards.forEach(card => {
+            const recipeName = card.getAttribute('data-recipe-name');
+            const recipeNameElement = card.querySelector('h3');
+            const originalName = recipeNameElement.textContent;
+            
+            if (term === '' || recipeName.includes(term)) {
+                card.style.display = 'block';
+                card.classList.remove('hidden', 'fade-out');
+                
+                // Remove previous highlights
+                const highlighted = card.querySelector('.highlight');
+                if (highlighted) {
+                    recipeNameElement.innerHTML = originalName;
+                }
+                
+                visibleCount++;
+            } else {
+                card.classList.add('fade-out');
+                setTimeout(() => {
+                    card.style.display = 'none';
+                    card.classList.add('hidden');
+                }, 300);
+            }
+        });
+        
+        updateResultCount(visibleCount);
+        
+        // Show no results message if needed
+        showNoResultsMessage(visibleCount === 0 && term !== '');
+    }
+    
+    // Show no results message
+    function showNoResultsMessage(show) {
+        let noResults = document.getElementById('no-results-message');
+        
+        if (show && !noResults) {
+            noResults = document.createElement('div');
+            noResults.id = 'no-results-message';
+            noResults.className = 'no-results';
+            noResults.innerHTML = `
+                <i class="fas fa-search fa-3x"></i>
+                <h3>No se encontraron recetas</h3>
+                <p>Intenta con otros términos de búsqueda</p>
+            `;
+            recipesGrid.appendChild(noResults);
+        } else if (!show && noResults) {
+            noResults.remove();
+        }
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value;
+        
+        if (searchTerm.length > 0) {
+            clearSearch.classList.remove('hidden');
+        } else {
+            clearSearch.classList.add('hidden');
+        }
+        
+        filterRecipes(searchTerm);
+    });
+    
+    clearSearch.addEventListener('click', clearSearchHandler);
+    
+    // Keyboard shortcuts for search
+    searchInput.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + F to focus search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+            e.preventDefault();
+            searchInput.focus();
+            searchInput.select();
+        }
+        
+        // Escape to clear search
+        if (e.key === 'Escape' && searchInput.value.length > 0) {
+            e.preventDefault();
+            clearSearchHandler();
+        }
+    });
+    
+    // Initialize
+    updateResultCount(totalRecipes);
+}
+
+// Enhanced search with debouncing
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Initialize search when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeSearch();
+    
+    // Add search tips
+    const searchInfo = document.getElementById('search-info');
+    if (searchInfo) {
+        const searchTips = document.createElement('div');
+        searchTips.className = 'search-tips';
+        searchTips.textContent = '💡 Escribe el nombre de la receta para buscar';
+        searchInfo.appendChild(searchTips);
+        
+        // Remove tips after 5 seconds
+        setTimeout(() => {
+            searchTips.style.opacity = '0';
+            setTimeout(() => {
+                if (searchTips.parentNode) {
+                    searchTips.remove();
+                }
+            }, 300);
+        }, 5000);
+    }
+});
+
+// Advanced search function (optional - for future enhancements)
+function advancedSearch(recipes, searchTerm) {
+    const term = searchTerm.toLowerCase();
+    
+    return recipes.filter(recipe => {
+        // Search in recipe name
+        if (recipe.name.toLowerCase().includes(term)) {
+            return true;
+        }
+        
+        // Search in ingredients
+        if (recipe.ingredients.some(ing => 
+            ing.nombre.toLowerCase().includes(term))) {
+            return true;
+        }
+        
+        // Search in procedure steps
+        if (recipe.procedure.some(step => 
+            step.toLowerCase().includes(term))) {
+            return true;
+        }
+        
+        return false;
+    });
+}
