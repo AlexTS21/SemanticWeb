@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetario con Ontologia</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ontology/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side - Operations -->
+         <div class="operations-panel">
+            <h1> Opciones</h1>
+            
+            <!-- Single Form for Add/Edit -->
+            <div class="form-section">
+                <h3 id="form-title">
+                    <i class="fas fa-plus-circle"></i> 
+                    {% if editing_recipe %}Editar Receta{% else %}Agregar Nueva Receta{% endif %}
+                </h3>
+                
+                <form method="POST" id="recipe-form">
+                    {% csrf_token %}
+                    
+                    {% if editing_recipe %}
+                        <input type="hidden" name="action" value="modify">
+                        <input type="hidden" name="nombre_original" value="{{ editing_recipe.nombre }}">
+                    {% else %}
+                        <input type="hidden" name="action" value="add">
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label>Nombre de la Receta:</label>
+                        <input type="text" name="nombre" 
+                            value="{{ editing_recipe.nombre|default:'' }}" 
+                            required class="form-control"
+                            {% if editing_recipe %}id="editing-recipe-name"{% endif %}>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ingredientes:</label>
+                        <div id="ingredients-container">
+                            {% if editing_recipe and editing_recipe.ingredientes %}
+                                {% for ingrediente in editing_recipe.ingredientes %}
+                                <div class="ingredient-row">
+                                    <input type="text" name="ingrediente_nombre[]" 
+                                        value="{{ ingrediente.nombre }}" 
+                                        placeholder="Nombre del ingrediente" class="form-control" required>
+                                    <input type="number" name="ingrediente_cantidad[]" 
+                                        value="{{ ingrediente.cantidad }}" 
+                                        placeholder="Cantidad" class="form-control" step="0.1" min="0" required>
+                                    <select name="ingrediente_unidad[]" class="form-control" required>
+                                        <option value="gramo" {% if ingrediente.unidad == 'gramo' %}selected{% endif %}>gramo</option>
+                                        <option value="kilogramo" {% if ingrediente.unidad == 'kilogramo' %}selected{% endif %}>kilogramo</option>
+                                        <option value="litro" {% if ingrediente.unidad == 'litro' %}selected{% endif %}>litro</option>
+                                        <option value="mililitro" {% if ingrediente.unidad == 'mililitro' %}selected{% endif %}>mililitro</option>
+                                        <option value="cucharada" {% if ingrediente.unidad == 'cucharada' %}selected{% endif %}>cucharada</option>
+                                        <option value="cucharadita" {% if ingrediente.unidad == 'cucharadita' %}selected{% endif %}>cucharadita</option>
+                                        <option value="taza" {% if ingrediente.unidad == 'taza' %}selected{% endif %}>taza</option>
+                                        <option value="unidad" {% if ingrediente.unidad == 'unidad' %}selected{% endif %}>unidad</option>
+                                        <option value="rebanada" {% if ingrediente.unidad == 'rebanada' %}selected{% endif %}>rebanada</option>
+                                    </select>
+                                    <button type="button" class="btn-remove" onclick="removeIngredient(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="ingredient-row">
+                                    <input type="text" name="ingrediente_nombre[]" placeholder="Nombre del ingrediente" class="form-control" required>
+                                    <input type="number" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control" step="0.1" min="0" required>
+                                    <select name="ingrediente_unidad[]" class="form-control" required>
+                                        <option value="gramo">gramo</option>
+                                        <option value="kilogramo">kilogramo</option>
+                                        <option value="litro">litro</option>
+                                        <option value="mililitro">mililitro</option>
+                                        <option value="cucharada">cucharada</option>
+                                        <option value="cucharadita">cucharadita</option>
+                                        <option value="taza">taza</option>
+                                        <option value="unidad">unidad</option>
+                                        <option value="rebanada">rebanada</option>
+                                    </select>
+                                    <button type="button" class="btn-remove" onclick="removeIngredient(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addIngredient()">
+                            <i class="fas fa-plus"></i> Agregar Ingrediente
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Procedimiento:</label>
+                        <div id="steps-container">
+                            {% if editing_recipe and editing_recipe.procedimiento %}
+                                {% for paso in editing_recipe.procedimiento %}
+                                <div class="step-row">
+                                    <textarea name="paso[]" placeholder="Descripción del paso..." class="form-control" required>{{ paso }}</textarea>
+                                    <button type="button" class="btn-remove" onclick="removeStep(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="step-row">
+                                    <textarea name="paso[]" placeholder="Descripción del paso..." class="form-control" required></textarea>
+                                    <button type="button" class="btn-remove" onclick="removeStep(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addStep()">
+                            <i class="fas fa-plus"></i> Agregar Paso
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Duración (minutos):</label>
+                        <input type="number" name="duracion" 
+                            value="{{ editing_recipe.detalles.duracion|default:'' }}" 
+                            placeholder="Ej: 30" class="form-control" min="1" required>
+                        <small class="form-text">Duración total en minutos</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dificultad:</label>
+                        <select name="dificultad" class="form-control" required>
+                            <option value="Fácil" {% if editing_recipe.detalles.dificultad == 'Fácil' %}selected{% endif %}>Fácil</option>
+                            <option value="Media" {% if editing_recipe.detalles.dificultad == 'Media' %}selected{% endif %}>Media</option>
+                            <option value="Difícil" {% if editing_recipe.detalles.dificultad == 'Difícil' %}selected{% endif %}>Difícil</option>
+                        </select>
+                    </div>
+
+                    <!-- Sección REQUERIDA para utensilios -->
+                    <div class="form-group">
+                        <label>Utensilios <span class="required">*</span>:</label>
+                        <div id="utensils-container">
+                            {% if editing_recipe and editing_recipe.utensilios %}
+                                {% for utensilio in editing_recipe.utensilios %}
+                                <div class="utensil-row">
+                                    <select name="utensilio[]" class="form-control" required>
+                                        <option value="">Seleccione un utensilio</option>
+                                        <option value="sartén" {% if utensilio == 'sartén' %}selected{% endif %}>Sartén</option>
+                                        <option value="cuchillo" {% if utensilio == 'cuchillo' %}selected{% endif %}>Cuchillo</option>
+                                        <option value="tabla de cortar" {% if utensilio == 'tabla de cortar' %}selected{% endif %}>Tabla de cortar</option>
+                                        <option value="batidora" {% if utensilio == 'batidora' %}selected{% endif %}>Batidora</option>
+                                        <option value="bol" {% if utensilio == 'bol' %}selected{% endif %}>Bol</option>
+                                        <option value="espátula" {% if utensilio == 'espátula' %}selected{% endif %}>Espátula</option>
+                                        <option value="tostadora" {% if utensilio == 'tostadora' %}selected{% endif %}>Tostadora</option>
+                                        <option value="plato" {% if utensilio == 'plato' %}selected{% endif %}>Plato</option>
+                                        <option value="olla" {% if utensilio == 'olla' %}selected{% endif %}>Olla</option>
+                                        <option value="cuchara" {% if utensilio == 'cuchara' %}selected{% endif %}>Cuchara</option>
+                                        <option value="tenedor" {% if utensilio == 'tenedor' %}selected{% endif %}>Tenedor</option>
+                                    </select>
+                                    <button type="button" class="btn-remove" onclick="removeUtensil(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="utensil-row">
+                                    <select name="utensilio[]" class="form-control" required>
+                                        <option value="">Seleccione un utensilio</option>
+                                        <option value="sartén">Sartén</option>
+                                        <option value="cuchillo">Cuchillo</option>
+                                        <option value="tabla de cortar">Tabla de cortar</option>
+                                        <option value="batidora">Batidora</option>
+                                        <option value="bol">Bol</option>
+                                        <option value="espátula">Espátula</option>
+                                        <option value="tostadora">Tostadora</option>
+                                        <option value="plato">Plato</option>
+                                        <option value="olla">Olla</option>
+                                        <option value="cuchara">Cuchara</option>
+                                        <option value="tenedor">Tenedor</option>
+                                    </select>
+                                    <button type="button" class="btn-remove" onclick="removeUtensil(this)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addUtensil()">
+                            <i class="fas fa-plus"></i> Agregar Utensilio
+                        </button>
+                        <small class="form-text">Seleccione al menos un utensilio requerido para la receta</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> 
+                            {% if editing_recipe %}Guardar Cambios{% else %}Guardar Receta{% endif %}
+                        </button>
+                        
+                        {% if editing_recipe %}
+                        <a href="{% url 'ontology:index' %}" class="btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                        {% else %}
+                        <button type="button" class="btn-secondary" onclick="clearForm()">
+                            <i class="fas fa-broom"></i> Limpiar
+                        </button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Right Side - Recipes Display -->
+        <div class="recipes-panel">
+    <h2><i class="fas fa-book-open"></i> Recetas Disponibles</h2>
+    
+    {% if editing_recipe %}
+    <div class="editing-notice">
+        <i class="fas fa-edit"></i>
+        <strong>Editando:</strong> {{ editing_recipe.nombre }}
+        <a href="{% url 'ontology:index' %}" class="btn-cancel-edit">
+            <i class="fas fa-times"></i> Cancelar edición
+        </a>
+    </div>
+    {% endif %}
+    
+    {% if recipes %}
+        <div class="recipes-grid">
+            {% for recipe_name, recipe_data in recipes.items %}
+            <div class="recipe-card {% if editing_recipe and editing_recipe.nombre == recipe_name %}editing{% endif %}">
+                <div class="recipe-header">
+                    <h3>{{ recipe_name }}</h3>
+                    <div class="recipe-actions">
+                        <a href="{% url 'ontology:index' %}?edit={{ recipe_name|urlencode }}" 
+                           class="btn-icon" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form method="POST" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="nombre" value="{{ recipe_name }}">
+                            <button type="submit" class="btn-icon btn-danger" 
+                                    onclick="return confirm('¿Está seguro de eliminar esta receta?')" 
+                                    title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Información de la receta -->
+                <div class="recipe-meta">
+                    {% if recipe_data.detalles.duracion %}
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ recipe_data.detalles.duracion }} minutos</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if recipe_data.detalles.dificultad %}
+                    <div class="meta-item">
+                        <i class="fas fa-signal"></i>
+                        <span>{{ recipe_data.detalles.dificultad }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="recipe-section">
+                    <h4><i class="fas fa-shopping-basket"></i> Ingredientes</h4>
+                    <ul>
+                        {% for ingrediente in recipe_data.ingredientes %}
+                        <li>
+                            <strong>{{ ingrediente.cantidad }} {{ ingrediente.unidad }}</strong> de {{ ingrediente.nombre }}
+                            {% if ingrediente.tipo %}
+                            <span class="ingredient-type">{{ ingrediente.tipo }}</span>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="recipe-section">
+                    <h4><i class="fas fa-list-ol"></i> Procedimiento</h4>
+                    <ol>
+                        {% for paso in recipe_data.procedimiento %}
+                        <li>{{ paso }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                
+                {% if recipe_data.utensilios %}
+                <div class="recipe-section">
+                    <h4><i class="fas fa-utensils"></i> Utensilios Requeridos</h4>
+                    <div class="utensils-list">
+                        {% for utensilio in recipe_data.utensilios %}
+                        <span class="utensil-tag">
+                            <i class="fas fa-toolbox"></i> {{ utensilio }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Grupos alimenticios según el plato del buen comer -->
+                {% if recipe_data.grupos_alimenticios %}
+                <div class="recipe-section">
+                    <h4><i class="fas fa-apple-alt"></i> Grupos Alimenticios</h4>
+                    <div class="food-groups">
+                        {% for grupo in recipe_data.grupos_alimenticios %}
+                        <span class="food-group-tag {{ grupo|lower }}">
+                            {{ grupo }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class="fas fa-utensils fa-3x"></i>
+            <h3>No hay recetas disponibles</h3>
+            <p>Agrega tu primera receta usando el formulario de la izquierda</p>
+        </div>
+    {% endif %}
+</div>
+    <script src="{% static 'ontology/script.js' %}"></script>
+</body>
+</html>

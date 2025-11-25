@@ -1,0 +1,352 @@
+@prefix : <http://www.semanticweb.org/recetario#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Recetario a owl:Ontology ;
+    rdfs:label "Ontología del Recetario"@es ;
+    rdfs:comment "Ontología para representar recetas de cocina según el plato del buen comer"@es .
+
+### CLASES PRINCIPALES ###
+:Receta a owl:Class ;
+    rdfs:label "Receta"@es ;
+    rdfs:comment "Una receta de cocina con ingredientes y pasos"@es .
+
+:Paso a owl:Class ;
+    rdfs:label "Paso"@es ;
+    rdfs:comment "Un paso individual en la preparación de una receta"@es .
+
+:Ingrediente a owl:Class ;
+    rdfs:label "Ingrediente"@es ;
+    rdfs:comment "Ingrediente utilizado en recetas"@es .
+
+:UnidadMedida a owl:Class ;
+    rdfs:label "Unidad de Medida"@es ;
+    rdfs:comment "Unidad para medir cantidades de ingredientes"@es .
+
+:Utensilio a owl:Class ;
+    rdfs:label "Utensilio"@es ;
+    rdfs:comment "Utensilio de cocina utilizado en la preparación"@es .
+
+### SUBCLASES DE INGREDIENTE (Plato del Buen Comer) ###
+:Fruta a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Fruta"@es ;
+    rdfs:comment "Ingredientes del grupo de frutas"@es .
+
+:Verdura a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Verdura"@es ;
+    rdfs:comment "Ingredientes del grupo de verduras"@es .
+
+:Cereal a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Cereal"@es ;
+    rdfs:comment "Ingredientes del grupo de cereales"@es .
+
+:Leguminosa a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Leguminosa"@es ;
+    rdfs:comment "Ingredientes del grupo de leguminosas"@es .
+
+:ProductoOrigenAnimal a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Producto de Origen Animal"@es ;
+    rdfs:comment "Ingredientes del grupo de productos de origen animal"@es .
+
+:Grasa a owl:Class ;
+    rdfs:subClassOf :Ingrediente ;
+    rdfs:label "Grasa"@es ;
+    rdfs:comment "Ingredientes del grupo de grasas"@es .
+
+### PROPIEDADES ###
+:nombre a owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:string ;
+    rdfs:label "nombre"@es .
+
+:descripcion a owl:DatatypeProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range xsd:string ;
+    rdfs:label "descripción"@es .
+
+:numeroPaso a owl:DatatypeProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range xsd:integer ;
+    rdfs:label "número de paso"@es .
+
+:cantidad a owl:DatatypeProperty ;
+    rdfs:domain :IngredientePorReceta ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "cantidad"@es .
+
+:duracionMinutos a owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range xsd:integer ;
+    rdfs:label "duración en minutos"@es .
+
+:dificultad a owl:DatatypeProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range [ a owl:DataRange ;
+        owl:oneOf ( "Fácil" "Media" "Difícil" ) ] ;
+    rdfs:label "dificultad"@es .
+
+### PROPIEDADES DE OBJETO ###
+:tieneIngrediente a owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :IngredientePorReceta ;
+    rdfs:label "tiene ingrediente"@es .
+
+:tienePaso a owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :Paso ;
+    rdfs:label "tiene paso"@es .
+
+:usaUtensilio a owl:ObjectProperty ;
+    rdfs:domain :Receta ;
+    rdfs:range :Utensilio ;
+    rdfs:label "usa utensilio"@es .
+
+:requiereIngrediente a owl:ObjectProperty ;
+    rdfs:domain :Paso ;
+    rdfs:range :Ingrediente ;
+    rdfs:label "requiere ingrediente"@es .
+
+:usaIngrediente a owl:ObjectProperty ;
+    rdfs:domain :IngredientePorReceta ;
+    rdfs:range :Ingrediente ;
+    rdfs:label "usa ingrediente"@es .
+
+:tieneUnidadMedida a owl:ObjectProperty ;
+    rdfs:domain :IngredientePorReceta ;
+    rdfs:range :UnidadMedida ;
+    rdfs:label "tiene unidad de medida"@es .
+
+:esDeTipo a owl:ObjectProperty ;
+    rdfs:domain :Ingrediente ;
+    rdfs:range [
+        a owl:Class ;
+        owl:oneOf ( :Fruta :Verdura :Cereal :Leguminosa :ProductoOrigenAnimal :Grasa )
+    ] ;
+    rdfs:label "es de tipo"@es .
+
+### CLASE AUXILIAR ###
+:IngredientePorReceta a owl:Class ;
+    rdfs:label "Ingrediente por Receta"@es ;
+    rdfs:comment "Relación entre ingrediente, cantidad y unidad de medida para una receta específica"@es .
+
+### INDIVIDUOS - UNIDADES DE MEDIDA ###
+:gramo a :UnidadMedida ;
+    rdfs:label "gramo"@es .
+
+:kilogramo a :UnidadMedida ;
+    rdfs:label "kilogramo"@es .
+
+:litro a :UnidadMedida ;
+    rdfs:label "litro"@es .
+
+:mililitro a :UnidadMedida ;
+    rdfs:label "mililitro"@es .
+
+:cucharada a :UnidadMedida ;
+    rdfs:label "cucharada"@es .
+
+:cucharadita a :UnidadMedida ;
+    rdfs:label "cucharadita"@es .
+
+:taza a :UnidadMedida ;
+    rdfs:label "taza"@es .
+
+:unidad a :UnidadMedida ;
+    rdfs:label "unidad"@es .
+
+:rebanada a :UnidadMedida ;
+    rdfs:label "rebanada"@es .
+
+### INDIVIDUOS - UTENSILIOS ###
+:sarten a :Utensilio ;
+    rdfs:label "sartén"@es .
+
+:cuchillo a :Utensilio ;
+    rdfs:label "cuchillo"@es .
+
+:tablaCortar a :Utensilio ;
+    rdfs:label "tabla de cortar"@es .
+
+:batidora a :Utensilio ;
+    rdfs:label "batidora"@es .
+
+:bol a :Utensilio ;
+    rdfs:label "bol"@es .
+
+:espátula a :Utensilio ;
+    rdfs:label "espátula"@es .
+
+:tostadora a :Utensilio ;
+    rdfs:label "tostadora"@es .
+
+:plato a :Utensilio ;
+    rdfs:label "plato"@es .
+
+### EJEMPLO 1: SANDWICH ###
+:panBlanco a :Cereal ;
+    rdfs:label "Pan blanco"@es .
+
+:jamon a :ProductoOrigenAnimal ;
+    rdfs:label "Jamón"@es .
+
+:queso a :ProductoOrigenAnimal ;
+    rdfs:label "Queso"@es .
+
+:lechuga a :Verdura ;
+    rdfs:label "Lechuga"@es .
+
+:tomate a :Verdura ;
+    rdfs:label "Tomate"@es .
+
+:mayonesa a :Grasa ;
+    rdfs:label "Mayonesa"@es .
+
+:ingSandwich1 a :IngredientePorReceta ;
+    :cantidad 2 ;
+    :tieneUnidadMedida :rebanada ;
+    :usaIngrediente :panBlanco ;
+    rdfs:label "Pan para sandwich"@es .
+
+:ingSandwich2 a :IngredientePorReceta ;
+    :cantidad 2 ;
+    :tieneUnidadMedida :rebanada ;
+    :usaIngrediente :jamon ;
+    rdfs:label "Jamón para sandwich"@es .
+
+:ingSandwich3 a :IngredientePorReceta ;
+    :cantidad 1 ;
+    :tieneUnidadMedida :rebanada ;
+    :usaIngrediente :queso ;
+    rdfs:label "Queso para sandwich"@es .
+
+:ingSandwich4 a :IngredientePorReceta ;
+    :cantidad 2 ;
+    :tieneUnidadMedida :hoja ;
+    :usaIngrediente :lechuga ;
+    rdfs:label "Lechuga para sandwich"@es .
+
+:ingSandwich5 a :IngredientePorReceta ;
+    :cantidad 4 ;
+    :tieneUnidadMedida :rebanada ;
+    :usaIngrediente :tomate ;
+    rdfs:label "Tomate para sandwich"@es .
+
+:ingSandwich6 a :IngredientePorReceta ;
+    :cantidad 1 ;
+    :tieneUnidadMedida :cucharada ;
+    :usaIngrediente :mayonesa ;
+    rdfs:label "Mayonesa para sandwich"@es .
+
+:pasoSandwich1 a :Paso ;
+    :numeroPaso 1 ;
+    :descripcion "Tostar las rebanadas de pan en la tostadora" ;
+    :requiereIngrediente :panBlanco .
+
+:pasoSandwich2 a :Paso ;
+    :numeroPaso 2 ;
+    :descripcion "Lavar y cortar la lechuga y el tomate" ;
+    :requiereIngrediente :lechuga , :tomate .
+
+:pasoSandwich3 a :Paso ;
+    :numeroPaso 3 ;
+    :descripcion "Untar mayonesa en el pan tostado" ;
+    :requiereIngrediente :mayonesa , :panBlanco .
+
+:pasoSandwich4 a :Paso ;
+    :numeroPaso 4 ;
+    :descripcion "Colocar el jamón, queso, lechuga y tomate entre las rebanadas de pan" ;
+    :requiereIngrediente :jamon , :queso , :lechuga , :tomate.
+
+:sandwich a :Receta ;
+    :nombre "Sandwich Clásico" ;
+    :duracionMinutos 10 ;
+    :dificultad "Fácil" ;
+    :tieneIngrediente :ingSandwich1 , :ingSandwich2 , :ingSandwich3 , :ingSandwich4 , :ingSandwich5 , :ingSandwich6 ;
+    :tienePaso :pasoSandwich1 , :pasoSandwich2 , :pasoSandwich3 , :pasoSandwich4 ;
+    :usaUtensilio :tostadora , :cuchillo , :tablaCortar , :plato .
+
+### EJEMPLO 2: TORTILLA DE PATATAS ###
+:patata a :Verdura ;
+    rdfs:label "Patata"@es .
+
+:huevo a :ProductoOrigenAnimal ;
+    rdfs:label "Huevo"@es .
+
+:cebolla a :Verdura ;
+    rdfs:label "Cebolla"@es .
+
+:aceiteOliva a :Grasa ;
+    rdfs:label "Aceite de Oliva"@es .
+
+:sal a :Ingrediente ;
+    rdfs:label "Sal"@es .
+
+:ingTortilla1 a :IngredientePorReceta ;
+    :cantidad 4 ;
+    :tieneUnidadMedida :unidad ;
+    :usaIngrediente :patata ;
+    rdfs:label "Patatas para tortilla"@es .
+
+:ingTortilla2 a :IngredientePorReceta ;
+    :cantidad 6 ;
+    :tieneUnidadMedida :unidad ;
+    :usaIngrediente :huevo ;
+    rdfs:label "Huevos para tortilla"@es .
+
+:ingTortilla3 a :IngredientePorReceta ;
+    :cantidad 1 ;
+    :tieneUnidadMedida :unidad ;
+    :usaIngrediente :cebolla ;
+    rdfs:label "Cebolla para tortilla"@es .
+
+:ingTortilla4 a :IngredientePorReceta ;
+    :cantidad 100 ;
+    :tieneUnidadMedida :mililitro ;
+    :usaIngrediente :aceiteOliva ;
+    rdfs:label "Aceite para tortilla"@es .
+
+:ingTortilla5 a :IngredientePorReceta ;
+    :cantidad 1 ;
+    :tieneUnidadMedida :cucharadita ;
+    :usaIngrediente :sal ;
+    rdfs:label "Sal para tortilla"@es .
+
+:pasoTortilla1 a :Paso ;
+    :numeroPaso 1 ;
+    :descripcion "Pelar y cortar las patatas en rodajas finas" ;
+    :requiereIngrediente :patata .
+
+:pasoTortilla2 a :Paso ;
+    :numeroPaso 2 ;
+    :descripcion "Pelar y picar la cebolla" ;
+    :requiereIngrediente :cebolla .
+
+:pasoTortilla3 a :Paso ;
+    :numeroPaso 3 ;
+    :descripcion "Freír las patatas y cebolla en aceite de oliva" ;
+    :requiereIngrediente :patata , :cebolla , :aceiteOliva .
+
+:pasoTortilla4 a :Paso ;
+    :numeroPaso 4 ;
+    :descripcion "Batir los huevos en un bol y mezclar con las patatas y cebolla" ;
+    :requiereIngrediente :huevo , :patata , :cebolla .
+
+:pasoTortilla5 a :Paso ;
+    :numeroPaso 5 ;
+    :descripcion "Cuajar la tortilla en el sartén por ambos lados" ;
+    :requiereIngrediente :huevo , :patata , :cebolla .
+
+:tortillaPatatas a :Receta ;
+    :nombre "Tortilla de Patatas Española" ;
+    :duracionMinutos 30 ;
+    :dificultad "Media" ;
+    :tieneIngrediente :ingTortilla1 , :ingTortilla2 , :ingTortilla3 , :ingTortilla4 , :ingTortilla5 ;
+    :tienePaso :pasoTortilla1 , :pasoTortilla2 , :pasoTortilla3 , :pasoTortilla4 , :pasoTortilla5 ;
+    :usaUtensilio :cuchillo , :tablaCortar , :sarten , :espátula , :bol , :batidora .
