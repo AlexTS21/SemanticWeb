@@ -23,10 +23,27 @@
         :olla,
         :tabladecortar .
 
+:agua_de_naranja a :Receta ;
+    :dificultad "Fácil" ;
+    :duracionMinutos 10 ;
+    :nombre "Agua de naranja" ;
+    :tieneIngrediente :ing_agua_de_naranja_0,
+        :ing_agua_de_naranja_1,
+        :ing_agua_de_naranja_2 ;
+    :tienePaso :paso_agua_de_naranja_0,
+        :paso_agua_de_naranja_1,
+        :paso_agua_de_naranja_2 ;
+    :usaUtensilio :cuchillo,
+        :olla,
+        :tabladecortar .
+
 :cantidad a owl:DatatypeProperty ;
     rdfs:label "cantidad"@es ;
     rdfs:domain :IngredientePorReceta ;
     rdfs:range xsd:decimal .
+
+:cucharada a :UnidadMedida ;
+    rdfs:label "cucharada"@es .
 
 :descripcion a owl:DatatypeProperty ;
     rdfs:label "descripción"@es ;
@@ -50,11 +67,29 @@
     rdfs:range [ a owl:Class ;
             owl:oneOf ( :Fruta :Verdura :Cereal :Leguminosa :ProductoOrigenAnimal :Grasa ) ] .
 
+:jamon a :Ingrediente,
+        :ProductoOrigenAnimal ;
+    rdfs:label "Jamon",
+        "Jamón"@es .
+
+:jamón a :Ingrediente ;
+    rdfs:label "Jamón" .
+
 :kilogramo a :UnidadMedida ;
     rdfs:label "kilogramo"@es .
 
+:lechuga a :Ingrediente,
+        :Verdura ;
+    rdfs:label "lechuga",
+        "Lechuga"@es .
+
 :litro a :UnidadMedida ;
     rdfs:label "litro"@es .
+
+:mayonesa a :Grasa,
+        :Ingrediente ;
+    rdfs:label "Mayonesa",
+        "Mayonesa"@es .
 
 :nombre a owl:DatatypeProperty ;
     rdfs:label "nombre"@es ;
@@ -66,29 +101,30 @@
     rdfs:domain :Paso ;
     rdfs:range xsd:integer .
 
+:panBlanco a :Cereal ;
+    rdfs:label "Pan blanco"@es .
+
+:pan_balnco a :Ingrediente ;
+    rdfs:label "Pan balnco" .
+
+:pan_blanco a :Ingrediente ;
+    rdfs:label "Pan blanco" .
+
+:plato a :Utensilio ;
+    rdfs:label "plato"@es .
+
+:queso a :Ingrediente,
+        :ProductoOrigenAnimal ;
+    rdfs:label "Queso",
+        "Queso"@es .
+
+:rebanada a :UnidadMedida ;
+    rdfs:label "rebanada"@es .
+
 :requiereIngrediente a owl:ObjectProperty ;
     rdfs:label "requiere ingrediente"@es ;
     rdfs:domain :Paso ;
     rdfs:range :Ingrediente .
-
-:sandwich a :Receta ;
-    :dificultad "Fácil" ;
-    :duracionMinutos 10 ;
-    :nombre "Sandwich Clásico" ;
-    :tieneIngrediente :ingSandwich1,
-        :ingSandwich2,
-        :ingSandwich3,
-        :ingSandwich4,
-        :ingSandwich5,
-        :ingSandwich6 ;
-    :tienePaso :pasoSandwich1,
-        :pasoSandwich2,
-        :pasoSandwich3,
-        :pasoSandwich4 ;
-    :usaUtensilio :cuchillo,
-        :plato,
-        :tablaCortar,
-        :tostadora .
 
 :taza a :UnidadMedida ;
     rdfs:label "taza"@es .
@@ -107,6 +143,11 @@
     rdfs:label "tiene unidad de medida"@es ;
     rdfs:domain :IngredientePorReceta ;
     rdfs:range :UnidadMedida .
+
+:tomate a :Ingrediente,
+        :Verdura ;
+    rdfs:label "Tomate",
+        "Tomate"@es .
 
 :tortillaPatatas a :Receta ;
     :dificultad "Media" ;
@@ -129,6 +170,9 @@
         :sarten,
         :tablaCortar .
 
+:tostadora a :Utensilio ;
+    rdfs:label "tostadora"@es .
+
 :usaIngrediente a owl:ObjectProperty ;
     rdfs:label "usa ingrediente"@es ;
     rdfs:domain :IngredientePorReceta ;
@@ -149,12 +193,6 @@
     rdfs:comment "Ingredientes del grupo de leguminosas"@es ;
     rdfs:subClassOf :Ingrediente .
 
-:agua a :Ingrediente ;
-    rdfs:label "agua" .
-
-:azucar a :Ingrediente ;
-    rdfs:label "azucar" .
-
 :batidora a :Utensilio ;
     rdfs:label "batidora"@es .
 
@@ -164,53 +202,11 @@
 :cuchara a :Utensilio ;
     rdfs:label "cuchara" .
 
-:cucharada a :UnidadMedida ;
-    rdfs:label "cucharada"@es .
-
 :cucharadita a :UnidadMedida ;
     rdfs:label "cucharadita"@es .
 
 :espátula a :Utensilio ;
     rdfs:label "espátula"@es .
-
-:gramo a :UnidadMedida ;
-    rdfs:label "gramo"@es .
-
-:ingSandwich1 a :IngredientePorReceta ;
-    rdfs:label "Pan para sandwich"@es ;
-    :cantidad 2 ;
-    :tieneUnidadMedida :rebanada ;
-    :usaIngrediente :panBlanco .
-
-:ingSandwich2 a :IngredientePorReceta ;
-    rdfs:label "Jamón para sandwich"@es ;
-    :cantidad 2 ;
-    :tieneUnidadMedida :rebanada ;
-    :usaIngrediente :jamon .
-
-:ingSandwich3 a :IngredientePorReceta ;
-    rdfs:label "Queso para sandwich"@es ;
-    :cantidad 1 ;
-    :tieneUnidadMedida :rebanada ;
-    :usaIngrediente :queso .
-
-:ingSandwich4 a :IngredientePorReceta ;
-    rdfs:label "Lechuga para sandwich"@es ;
-    :cantidad 2 ;
-    :tieneUnidadMedida :hoja ;
-    :usaIngrediente :lechuga .
-
-:ingSandwich5 a :IngredientePorReceta ;
-    rdfs:label "Tomate para sandwich"@es ;
-    :cantidad 4 ;
-    :tieneUnidadMedida :rebanada ;
-    :usaIngrediente :tomate .
-
-:ingSandwich6 a :IngredientePorReceta ;
-    rdfs:label "Mayonesa para sandwich"@es ;
-    :cantidad 1 ;
-    :tieneUnidadMedida :cucharada ;
-    :usaIngrediente :mayonesa .
 
 :ingTortilla1 a :IngredientePorReceta ;
     rdfs:label "Patatas para tortilla"@es ;
@@ -253,6 +249,21 @@
     :usaIngrediente :limon .
 
 :ing_agua_de_limon_2 a :IngredientePorReceta ;
+    :cantidad 5.5e+01 ;
+    :tieneUnidadMedida :gramo ;
+    :usaIngrediente :azucar .
+
+:ing_agua_de_naranja_0 a :IngredientePorReceta ;
+    :cantidad 1e+03 ;
+    :tieneUnidadMedida :mililitro ;
+    :usaIngrediente :agua .
+
+:ing_agua_de_naranja_1 a :IngredientePorReceta ;
+    :cantidad 5e+00 ;
+    :tieneUnidadMedida :unidad ;
+    :usaIngrediente :naranja .
+
+:ing_agua_de_naranja_2 a :IngredientePorReceta ;
     :cantidad 5e+01 ;
     :tieneUnidadMedida :gramo ;
     :usaIngrediente :azucar .
@@ -260,33 +271,8 @@
 :limon a :Ingrediente ;
     rdfs:label "limon" .
 
-:olla a :Utensilio ;
-    rdfs:label "olla" .
-
-:pasoSandwich1 a :Paso ;
-    :descripcion "Tostar las rebanadas de pan en la tostadora" ;
-    :numeroPaso 1 ;
-    :requiereIngrediente :panBlanco .
-
-:pasoSandwich2 a :Paso ;
-    :descripcion "Lavar y cortar la lechuga y el tomate" ;
-    :numeroPaso 2 ;
-    :requiereIngrediente :lechuga,
-        :tomate .
-
-:pasoSandwich3 a :Paso ;
-    :descripcion "Untar mayonesa en el pan tostado" ;
-    :numeroPaso 3 ;
-    :requiereIngrediente :mayonesa,
-        :panBlanco .
-
-:pasoSandwich4 a :Paso ;
-    :descripcion "Colocar el jamón, queso, lechuga y tomate entre las rebanadas de pan" ;
-    :numeroPaso 4 ;
-    :requiereIngrediente :jamon,
-        :lechuga,
-        :queso,
-        :tomate .
+:naranja a :Ingrediente ;
+    rdfs:label "naranja" .
 
 :pasoTortilla1 a :Paso ;
     :descripcion "Pelar y cortar las patatas en rodajas finas" ;
@@ -331,8 +317,17 @@
     :descripcion "Disolver la azucar en el agua" ;
     :numeroPaso 3 .
 
-:plato a :Utensilio ;
-    rdfs:label "plato"@es .
+:paso_agua_de_naranja_0 a :Paso ;
+    :descripcion "Cortar las naranjas por la mitad" ;
+    :numeroPaso 1 .
+
+:paso_agua_de_naranja_1 a :Paso ;
+    :descripcion "Exprimir las naranjas en el agua" ;
+    :numeroPaso 2 .
+
+:paso_agua_de_naranja_2 a :Paso ;
+    :descripcion "Disover el azucar en el agua" ;
+    :numeroPaso 3 .
 
 :sal a :Ingrediente ;
     rdfs:label "Sal"@es .
@@ -340,11 +335,8 @@
 :sarten a :Utensilio ;
     rdfs:label "sartén"@es .
 
-:tabladecortar a :Utensilio ;
-    rdfs:label "tabla de cortar" .
-
-:tostadora a :Utensilio ;
-    rdfs:label "tostadora"@es .
+:tablaCortar a :Utensilio ;
+    rdfs:label "tabla de cortar"@es .
 
 :Cereal a owl:Class ;
     rdfs:label "Cereal"@es ;
@@ -354,20 +346,20 @@
 :aceiteOliva a :Grasa ;
     rdfs:label "Aceite de Oliva"@es .
 
-:jamon a :ProductoOrigenAnimal ;
-    rdfs:label "Jamón"@es .
+:agua a :Ingrediente ;
+    rdfs:label "agua" .
 
-:mayonesa a :Grasa ;
-    rdfs:label "Mayonesa"@es .
+:azucar a :Ingrediente ;
+    rdfs:label "azucar" .
 
-:mililitro a :UnidadMedida ;
-    rdfs:label "mililitro"@es .
+:gramo a :UnidadMedida ;
+    rdfs:label "gramo"@es .
 
-:queso a :ProductoOrigenAnimal ;
-    rdfs:label "Queso"@es .
+:olla a :Utensilio ;
+    rdfs:label "olla" .
 
-:tablaCortar a :Utensilio ;
-    rdfs:label "tabla de cortar"@es .
+:tabladecortar a :Utensilio ;
+    rdfs:label "tabla de cortar" .
 
 :Grasa a owl:Class ;
     rdfs:label "Grasa"@es ;
@@ -380,25 +372,13 @@
 :huevo a :ProductoOrigenAnimal ;
     rdfs:label "Huevo"@es .
 
-:lechuga a :Verdura ;
-    rdfs:label "Lechuga"@es .
-
-:panBlanco a :Cereal ;
-    rdfs:label "Pan blanco"@es .
-
-:tomate a :Verdura ;
-    rdfs:label "Tomate"@es .
+:mililitro a :UnidadMedida ;
+    rdfs:label "mililitro"@es .
 
 :ProductoOrigenAnimal a owl:Class ;
     rdfs:label "Producto de Origen Animal"@es ;
     rdfs:comment "Ingredientes del grupo de productos de origen animal"@es ;
     rdfs:subClassOf :Ingrediente .
-
-:rebanada a :UnidadMedida ;
-    rdfs:label "rebanada"@es .
-
-:unidad a :UnidadMedida ;
-    rdfs:label "unidad"@es .
 
 :Verdura a owl:Class ;
     rdfs:label "Verdura"@es ;
@@ -410,6 +390,9 @@
 
 :patata a :Verdura ;
     rdfs:label "Patata"@es .
+
+:unidad a :UnidadMedida ;
+    rdfs:label "unidad"@es .
 
 :Receta a owl:Class ;
     rdfs:label "Receta"@es ;
@@ -423,15 +406,15 @@
     rdfs:label "Utensilio"@es ;
     rdfs:comment "Utensilio de cocina utilizado en la preparación"@es .
 
-:Ingrediente a owl:Class ;
-    rdfs:label "Ingrediente"@es ;
-    rdfs:comment "Ingrediente utilizado en recetas"@es .
+:IngredientePorReceta a owl:Class ;
+    rdfs:label "Ingrediente por Receta"@es ;
+    rdfs:comment "Relación entre ingrediente, cantidad y unidad de medida para una receta específica"@es .
 
 :Paso a owl:Class ;
     rdfs:label "Paso"@es ;
     rdfs:comment "Un paso individual en la preparación de una receta"@es .
 
-:IngredientePorReceta a owl:Class ;
-    rdfs:label "Ingrediente por Receta"@es ;
-    rdfs:comment "Relación entre ingrediente, cantidad y unidad de medida para una receta específica"@es .
+:Ingrediente a owl:Class ;
+    rdfs:label "Ingrediente"@es ;
+    rdfs:comment "Ingrediente utilizado en recetas"@es .
 

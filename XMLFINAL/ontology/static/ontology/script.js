@@ -4,9 +4,9 @@ function addIngredient() {
     const newRow = document.createElement('div');
     newRow.className = 'ingredient-row';
     newRow.innerHTML = `
-        <input type="text" name="ingrediente_nombre[]" placeholder="Nombre del ingrediente" class="form-control" required>
-        <input type="number" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control" step="0.1" min="0" required>
-        <select name="ingrediente_unidad[]" class="form-control" required>
+        <input type="text" name="ingrediente_nombre[]" placeholder="Nombre del ingrediente" class="form-control">
+        <input type="number" name="ingrediente_cantidad[]" placeholder="Cantidad" class="form-control" step="0.1" min="0">
+        <select name="ingrediente_unidad[]" class="form-control">
             <option value="gramo">gramo</option>
             <option value="kilogramo">kilogramo</option>
             <option value="litro">litro</option>
@@ -33,7 +33,7 @@ function addStep() {
     const newRow = document.createElement('div');
     newRow.className = 'step-row';
     newRow.innerHTML = `
-        <textarea name="paso[]" placeholder="Descripción del paso..." class="form-control" required></textarea>
+        <textarea name="paso[]" placeholder="Descripción del paso..." class="form-control"></textarea>
         <button type="button" class="btn-remove" onclick="removeStep(this)"><i class="fas fa-times"></i></button>
     `;
     container.appendChild(newRow);
@@ -50,7 +50,7 @@ function addUtensil() {
     const newRow = document.createElement('div');
     newRow.className = 'utensil-row';
     newRow.innerHTML = `
-        <select name="utensilio[]" class="form-control" required>
+        <select name="utensilio[]" class="form-control">
             <option value="">Seleccione un utensilio</option>
             <option value="sartén">Sartén</option>
             <option value="cuchillo">Cuchillo</option>
@@ -70,129 +70,181 @@ function addUtensil() {
 }
 
 function removeUtensil(button) {
-    // No permitir eliminar si solo queda un utensilio
     if (document.querySelectorAll('.utensil-row').length > 1) {
         button.parentElement.remove();
-    } else {
-        alert('Debe tener al menos un utensilio seleccionado');
     }
 }
 
-// Validación personalizada para utensilios
-function validateUtensils() {
-    const utensilSelects = document.querySelectorAll('select[name="utensilio[]"]');
-    let hasValidUtensil = false;
-    
-    utensilSelects.forEach(select => {
-        if (select.value !== '') {
-            hasValidUtensil = true;
-        }
-    });
-    
-    if (!hasValidUtensil) {
-        alert('Por favor, seleccione al menos un utensilio');
-        return false;
-    }
-    return true;
-}
-
-// Validación general del formulario
+// Validación mejorada del formulario
 function validateForm() {
+    let isValid = true;
+    let errorMessage = '';
+    
     // Validar nombre de receta
     const recipeName = document.querySelector('input[name="nombre"]').value.trim();
     if (!recipeName) {
-        alert('Por favor, ingrese el nombre de la receta');
-        return false;
+        errorMessage = 'Por favor, ingrese el nombre de la receta';
+        isValid = false;
     }
     
     // Validar ingredientes
-    const ingredientNames = document.querySelectorAll('input[name="ingrediente_nombre[]"]');
-    let validIngredients = false;
-    ingredientNames.forEach(input => {
-        if (input.value.trim()) {
-            validIngredients = true;
+    if (isValid) {
+        const ingredientNames = document.querySelectorAll('input[name="ingrediente_nombre[]"]');
+        let hasValidIngredients = false;
+        let emptyIngredientCount = 0;
+        
+        ingredientNames.forEach(input => {
+            if (input.value.trim()) {
+                hasValidIngredients = true;
+            } else {
+                emptyIngredientCount++;
+            }
+        });
+        
+        if (!hasValidIngredients) {
+            errorMessage = 'Por favor, ingrese al menos un ingrediente';
+            isValid = false;
+        } else if (emptyIngredientCount === ingredientNames.length) {
+            errorMessage = 'Por favor, ingrese al menos un ingrediente';
+            isValid = false;
         }
-    });
-    if (!validIngredients) {
-        alert('Por favor, ingrese al menos un ingrediente');
-        return false;
     }
     
     // Validar procedimiento
-    const steps = document.querySelectorAll('textarea[name="paso[]"]');
-    let validSteps = false;
-    steps.forEach(textarea => {
-        if (textarea.value.trim()) {
-            validSteps = true;
+    if (isValid) {
+        const steps = document.querySelectorAll('textarea[name="paso[]"]');
+        let hasValidSteps = false;
+        let emptyStepCount = 0;
+        
+        steps.forEach(textarea => {
+            if (textarea.value.trim()) {
+                hasValidSteps = true;
+            } else {
+                emptyStepCount++;
+            }
+        });
+        
+        if (!hasValidSteps) {
+            errorMessage = 'Por favor, ingrese al menos un paso del procedimiento';
+            isValid = false;
+        } else if (emptyStepCount === steps.length) {
+            errorMessage = 'Por favor, ingrese al menos un paso del procedimiento';
+            isValid = false;
         }
-    });
-    if (!validSteps) {
-        alert('Por favor, ingrese al menos un paso del procedimiento');
-        return false;
     }
     
     // Validar duración
-    const duration = document.querySelector('input[name="duracion"]').value;
-    if (!duration || duration < 1) {
-        alert('Por favor, ingrese una duración válida (mínimo 1 minuto)');
-        return false;
+    if (isValid) {
+        const duration = document.querySelector('input[name="duracion"]').value;
+        if (!duration || duration < 1) {
+            errorMessage = 'Por favor, ingrese una duración válida (mínimo 1 minuto)';
+            isValid = false;
+        }
     }
     
     // Validar utensilios
-    return validateUtensils();
+    if (isValid) {
+        const utensilSelects = document.querySelectorAll('select[name="utensilio[]"]');
+        let hasValidUtensil = false;
+        let emptyUtensilCount = 0;
+        
+        utensilSelects.forEach(select => {
+            if (select.value !== '') {
+                hasValidUtensil = true;
+            } else {
+                emptyUtensilCount++;
+            }
+        });
+        
+        if (!hasValidUtensil) {
+            errorMessage = 'Por favor, seleccione al menos un utensilio';
+            isValid = false;
+        } else if (emptyUtensilCount === utensilSelects.length) {
+            errorMessage = 'Por favor, seleccione al menos un utensilio';
+            isValid = false;
+        }
+    }
+    
+    if (!isValid && errorMessage) {
+        alert(errorMessage);
+        return false;
+    }
+    
+    return true;
 }
 
-// Clear form function
+// Clear form function mejorada
 function clearForm() {
     if (confirm('¿Está seguro de que desea limpiar el formulario? Se perderán todos los datos no guardados.')) {
-        document.getElementById('recipe-form').reset();
+        const form = document.getElementById('recipe-form');
         
-        // Clear dynamic fields but keep one of each
+        // Reset del formulario
+        form.reset();
+        
+        // Limpiar campos dinámicos pero mantener uno de cada
         const ingredientsContainer = document.getElementById('ingredients-container');
         const stepsContainer = document.getElementById('steps-container');
         const utensilsContainer = document.getElementById('utensils-container');
         
-        // Keep only first ingredient row
+        // Mantener solo la primera fila de ingredientes
         while (ingredientsContainer.children.length > 1) {
             ingredientsContainer.removeChild(ingredientsContainer.lastChild);
         }
         
-        // Keep only first step row
+        // Mantener solo la primera fila de pasos
         while (stepsContainer.children.length > 1) {
             stepsContainer.removeChild(stepsContainer.lastChild);
         }
         
-        // Keep only first utensil row (no eliminar porque es requerido)
+        // Mantener solo la primera fila de utensilios
         while (utensilsContainer.children.length > 1) {
             utensilsContainer.removeChild(utensilsContainer.lastChild);
         }
         
-        // Clear the first rows
+        // Limpiar las primeras filas
         const firstIngredient = ingredientsContainer.querySelector('.ingredient-row');
-        firstIngredient.querySelectorAll('input').forEach(input => input.value = '');
-        firstIngredient.querySelector('select').selectedIndex = 0;
+        if (firstIngredient) {
+            firstIngredient.querySelectorAll('input').forEach(input => input.value = '');
+            const select = firstIngredient.querySelector('select');
+            if (select) select.selectedIndex = 0;
+        }
         
         const firstStep = stepsContainer.querySelector('.step-row');
-        firstStep.querySelector('textarea').value = '';
+        if (firstStep) {
+            firstStep.querySelector('textarea').value = '';
+        }
         
         const firstUtensil = utensilsContainer.querySelector('.utensil-row');
-        firstUtensil.querySelector('select').selectedIndex = 0;
+        if (firstUtensil) {
+            firstUtensil.querySelector('select').selectedIndex = 0;
+        }
         
-        // Reset hidden fields for new recipe
+        // Resetear campos ocultos para nueva receta
         document.querySelector('input[name="action"]').value = 'add';
         const nombreOriginal = document.querySelector('input[name="nombre_original"]');
         if (nombreOriginal) {
             nombreOriginal.remove();
         }
         
-        // Update form title
-        document.getElementById('form-title').innerHTML = '<i class="fas fa-plus-circle"></i> Agregar Nueva Receta';
-        const submitButton = document.querySelector('.btn-primary');
-        const icon = submitButton.querySelector('i');
-        icon.nextSibling.textContent = ' Guardar Receta';
+        // Actualizar título del formulario
+        const formTitle = document.getElementById('form-title');
+        if (formTitle) {
+            formTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Agregar Nueva Receta';
+        }
         
-        // Reset form state tracking
-        formInitialState = serializeForm(document.getElementById('recipe-form'));
+        const submitButton = document.querySelector('.btn-primary');
+        if (submitButton) {
+            const icon = submitButton.querySelector('i');
+            if (icon && icon.nextSibling) {
+                icon.nextSibling.textContent = ' Guardar Receta';
+            }
+        }
+        
+        // Resetear seguimiento del estado del formulario
+        formInitialState = serializeForm(form);
+        
+        // Limpiar localStorage del borrador
+        localStorage.removeItem('recipeDraft');
     }
 }
 
@@ -203,31 +255,37 @@ document.addEventListener('DOMContentLoaded', function() {
         editingRecipeName.focus();
     }
     
-    // Add form submit validation
+    // Manejar envío del formulario
     const form = document.getElementById('recipe-form');
-    form.addEventListener('submit', function(e) {
-        if (!validateForm()) {
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Prevenir la validación HTML5 nativa
             e.preventDefault();
-            return false;
-        }
-    });
-    
-    // Initialize form state tracking
-    formInitialState = serializeForm(form);
-    
-    // Track form changes for beforeunload warning
-    form.addEventListener('change', function() {
-        window.onbeforeunload = function() {
-            const currentState = serializeForm(form);
-            if (currentState !== formInitialState) {
-                return 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?';
+            
+            // Usar nuestra validación personalizada
+            if (validateForm()) {
+                // Si la validación pasa, enviar el formulario
+                this.submit();
             }
-        };
-    });
-    
-    form.addEventListener('submit', function() {
-        window.onbeforeunload = null;
-    });
+        });
+        
+        // Inicializar seguimiento del estado del formulario
+        formInitialState = serializeForm(form);
+        
+        // Seguir cambios para advertencia beforeunload
+        form.addEventListener('change', function() {
+            window.onbeforeunload = function() {
+                const currentState = serializeForm(form);
+                if (currentState !== formInitialState) {
+                    return 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?';
+                }
+            };
+        });
+        
+        form.addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    }
 });
 
 // Form state tracking for beforeunload warning
@@ -237,45 +295,48 @@ function serializeForm(form) {
     const formData = new FormData(form);
     let serialized = '';
     for (let [key, value] of formData.entries()) {
-        serialized += key + '=' + value + '&';
+        serialized += key + '=' + encodeURIComponent(value) + '&';
     }
     return serialized;
 }
 
-// Auto-remove empty utensil selects when they lose focus
+// Eliminar automáticamente selects de utensilios vacíos cuando pierden el foco
 document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('change', function(e) {
         if (e.target.name === 'utensilio[]' && e.target.value === '' && 
             document.querySelectorAll('.utensil-row').length > 1) {
-            // Check if this is the only empty utensil row
+            // Verificar si esta es la única fila de utensilios vacía
             const utensilRows = document.querySelectorAll('.utensil-row');
             let emptyRows = 0;
             utensilRows.forEach(row => {
                 const select = row.querySelector('select');
-                if (select.value === '') {
+                if (select && select.value === '') {
                     emptyRows++;
                 }
             });
             
-            // If there are multiple empty rows and this one just became empty, remove it
+            // Si hay múltiples filas vacías y esta acaba de quedar vacía, eliminarla
             if (emptyRows > 1) {
-                e.target.closest('.utensil-row').remove();
+                const rowToRemove = e.target.closest('.utensil-row');
+                if (rowToRemove) {
+                    rowToRemove.remove();
+                }
             }
         }
     });
 });
 
-// Keyboard shortcuts
+// Atajos de teclado
 document.addEventListener('keydown', function(e) {
-    // Ctrl + Enter to submit form
+    // Ctrl + Enter para enviar formulario
     if (e.ctrlKey && e.key === 'Enter') {
         const form = document.getElementById('recipe-form');
         if (form) {
-            form.dispatchEvent(new Event('submit'));
+            form.dispatchEvent(new Event('submit', { cancelable: true }));
         }
     }
     
-    // Escape to clear form (only when not editing)
+    // Escape para limpiar formulario (solo cuando no se está editando)
     if (e.key === 'Escape' && !document.querySelector('input[name="nombre_original"]')) {
         if (confirm('¿Limpiar formulario?')) {
             clearForm();
@@ -283,52 +344,30 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Auto-save draft functionality (optional)
+// Funcionalidad de auto-guardado de borrador (opcional)
 let autoSaveTimer;
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('recipe-form');
     
-    form.addEventListener('input', function() {
-        clearTimeout(autoSaveTimer);
-        autoSaveTimer = setTimeout(function() {
-            // Save form state to localStorage
-            const formData = new FormData(form);
-            const formState = {};
-            for (let [key, value] of formData.entries()) {
-                if (!formState[key]) {
-                    formState[key] = [];
+    if (form) {
+        form.addEventListener('input', function() {
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(function() {
+                // Guardar estado del formulario en localStorage
+                const formData = new FormData(form);
+                const formState = {};
+                for (let [key, value] of formData.entries()) {
+                    if (!formState[key]) {
+                        formState[key] = [];
+                    }
+                    formState[key].push(value);
                 }
-                formState[key].push(value);
-            }
-            localStorage.setItem('recipeDraft', JSON.stringify(formState));
-            console.log('Borrador guardado automáticamente');
-        }, 2000);
-    });
-});
-
-// Load draft function (optional)
-function loadDraft() {
-    const draft = localStorage.getItem('recipeDraft');
-    if (draft && confirm('¿Cargar borrador guardado?')) {
-        const formState = JSON.parse(draft);
-        
-        // Clear current form
-        clearForm();
-        
-        // Load values (this would need more complex implementation)
-        console.log('Cargando borrador:', formState);
-        // Implementation would depend on your specific form structure
-    }
-}
-
-// Initialize draft loading on page load if no existing data
-document.addEventListener('DOMContentLoaded', function() {
-    if (!document.querySelector('input[name="nombre_original"]') && 
-        !document.querySelector('input[name="nombre"]').value) {
-        // Check if there's a draft after a short delay
-        setTimeout(loadDraft, 1000);
+                localStorage.setItem('recipeDraft', JSON.stringify(formState));
+            }, 2000);
+        });
     }
 });
+
 
 // Search functionality
 function initializeSearch() {
@@ -469,49 +508,5 @@ function debounce(func, wait) {
 // Initialize search when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeSearch();
-    
-    // Add search tips
-    const searchInfo = document.getElementById('search-info');
-    if (searchInfo) {
-        const searchTips = document.createElement('div');
-        searchTips.className = 'search-tips';
-        searchTips.textContent = '💡 Escribe el nombre de la receta para buscar';
-        searchInfo.appendChild(searchTips);
-        
-        // Remove tips after 5 seconds
-        setTimeout(() => {
-            searchTips.style.opacity = '0';
-            setTimeout(() => {
-                if (searchTips.parentNode) {
-                    searchTips.remove();
-                }
-            }, 300);
-        }, 5000);
-    }
 });
 
-// Advanced search function (optional - for future enhancements)
-function advancedSearch(recipes, searchTerm) {
-    const term = searchTerm.toLowerCase();
-    
-    return recipes.filter(recipe => {
-        // Search in recipe name
-        if (recipe.name.toLowerCase().includes(term)) {
-            return true;
-        }
-        
-        // Search in ingredients
-        if (recipe.ingredients.some(ing => 
-            ing.nombre.toLowerCase().includes(term))) {
-            return true;
-        }
-        
-        // Search in procedure steps
-        if (recipe.procedure.some(step => 
-            step.toLowerCase().includes(term))) {
-            return true;
-        }
-        
-        return false;
-    });
-}
