@@ -75,7 +75,7 @@ function removeUtensil(button) {
     }
 }
 
-// Validación mejorada del formulario
+// Validación del formulario
 function validateForm() {
     let isValid = true;
     let errorMessage = '';
@@ -173,7 +173,7 @@ function validateForm() {
     return true;
 }
 
-// Clear form function mejorada
+// Clear form function 
 function clearForm() {
     if (confirm('¿Está seguro de que desea limpiar el formulario? Se perderán todos los datos no guardados.')) {
         const form = document.getElementById('recipe-form');
@@ -300,51 +300,9 @@ function serializeForm(form) {
     return serialized;
 }
 
-// Eliminar automáticamente selects de utensilios vacíos cuando pierden el foco
-document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('change', function(e) {
-        if (e.target.name === 'utensilio[]' && e.target.value === '' && 
-            document.querySelectorAll('.utensil-row').length > 1) {
-            // Verificar si esta es la única fila de utensilios vacía
-            const utensilRows = document.querySelectorAll('.utensil-row');
-            let emptyRows = 0;
-            utensilRows.forEach(row => {
-                const select = row.querySelector('select');
-                if (select && select.value === '') {
-                    emptyRows++;
-                }
-            });
-            
-            // Si hay múltiples filas vacías y esta acaba de quedar vacía, eliminarla
-            if (emptyRows > 1) {
-                const rowToRemove = e.target.closest('.utensil-row');
-                if (rowToRemove) {
-                    rowToRemove.remove();
-                }
-            }
-        }
-    });
-});
 
-// Atajos de teclado
-document.addEventListener('keydown', function(e) {
-    // Ctrl + Enter para enviar formulario
-    if (e.ctrlKey && e.key === 'Enter') {
-        const form = document.getElementById('recipe-form');
-        if (form) {
-            form.dispatchEvent(new Event('submit', { cancelable: true }));
-        }
-    }
-    
-    // Escape para limpiar formulario (solo cuando no se está editando)
-    if (e.key === 'Escape' && !document.querySelector('input[name="nombre_original"]')) {
-        if (confirm('¿Limpiar formulario?')) {
-            clearForm();
-        }
-    }
-});
 
-// Funcionalidad de auto-guardado de borrador (opcional)
+// Funcionalidad de auto-guardado de borrador
 let autoSaveTimer;
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('recipe-form');
@@ -376,11 +334,11 @@ function initializeSearch() {
     const resultCount = document.getElementById('result-count');
     const recipesGrid = document.getElementById('recipes-grid');
     const recipeCards = document.querySelectorAll('.recipe-card');
-    
+
     if (!searchInput) return;
-    
+        
     const totalRecipes = recipeCards.length;
-    
+        
     // Update result count
     function updateResultCount(visibleCount) {
         if (resultCount) {
@@ -393,7 +351,7 @@ function initializeSearch() {
             }
         }
     }
-    
+        
     // Clear search
     function clearSearchHandler() {
         searchInput.value = '';
@@ -401,7 +359,7 @@ function initializeSearch() {
         clearSearch.classList.add('hidden');
         searchInput.focus();
     }
-    
+        
     // Filter recipes based on search term
     function filterRecipes(searchTerm) {
         const term = searchTerm.toLowerCase().trim();
@@ -437,7 +395,7 @@ function initializeSearch() {
         // Show no results message if needed
         showNoResultsMessage(visibleCount === 0 && term !== '');
     }
-    
+
     // Show no results message
     function showNoResultsMessage(show) {
         let noResults = document.getElementById('no-results-message');
@@ -456,7 +414,7 @@ function initializeSearch() {
             noResults.remove();
         }
     }
-    
+        
     // Event listeners
     searchInput.addEventListener('input', function(e) {
         const searchTerm = e.target.value;
@@ -469,9 +427,9 @@ function initializeSearch() {
         
         filterRecipes(searchTerm);
     });
-    
+
     clearSearch.addEventListener('click', clearSearchHandler);
-    
+
     // Keyboard shortcuts for search
     searchInput.addEventListener('keydown', function(e) {
         // Ctrl/Cmd + F to focus search
@@ -487,12 +445,12 @@ function initializeSearch() {
             clearSearchHandler();
         }
     });
-    
+        
     // Initialize
     updateResultCount(totalRecipes);
 }
 
-// Enhanced search with debouncing
+/* Enhanced search with debouncing
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -503,7 +461,7 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
-}
+}*/
 
 // Initialize search when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {

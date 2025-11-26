@@ -17,7 +17,7 @@ def index(request):
                     'nombre': request.POST.get('nombre'),
                     'ingredientes': [],
                     'procedimiento': [],
-                    'utensilios': [],  # NUEVO: agregar lista de utensilios
+                    'utensilios': [], 
                     'detalles': {}
                 }
                 

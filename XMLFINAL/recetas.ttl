@@ -129,6 +129,9 @@
 :taza a :UnidadMedida ;
     rdfs:label "taza"@es .
 
+:tenedor a :Utensilio ;
+    rdfs:label "tenedor" .
+
 :tieneIngrediente a owl:ObjectProperty ;
     rdfs:label "tiene ingrediente"@es ;
     rdfs:domain :Receta ;
@@ -244,7 +247,7 @@
     :usaIngrediente :agua .
 
 :ing_agua_de_limon_1 a :IngredientePorReceta ;
-    :cantidad 1.2e+01 ;
+    :cantidad 1e+01 ;
     :tieneUnidadMedida :unidad ;
     :usaIngrediente :limon .
 

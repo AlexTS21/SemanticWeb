@@ -15,7 +15,7 @@ class RecetarioManager:
         self.graph.bind("rdfs", RDFS)
         
         # Cargar la ontología existente
-        ontology_path = "recetas.ttl"  # Ajusta la ruta según tu proyecto
+        ontology_path = "recetas.ttl"  
         if os.path.exists(ontology_path):
             self.graph.parse(ontology_path, format="turtle")
             print("SE CARGO LA ONTOLOGIA")
@@ -141,12 +141,10 @@ class RecetarioManager:
         self.graph.add((recipe_uri, RECETARIO.nombre, Literal(recipe_name)))
         
         # Agregar duración si existe
-        if recipe_data.get('duracion'):
-            try:
-                duration = int(recipe_data['duracion'])
-                self.graph.add((recipe_uri, RECETARIO.duracionMinutos, Literal(duration)))
-            except:
-                pass
+     
+        duration = int(recipe_data['duracion'])
+        self.graph.add((recipe_uri, RECETARIO.duracionMinutos, Literal(duration)))
+         
         
         # Agregar dificultad
         difficulty = recipe_data.get('dificultad', 'Fácil')
@@ -182,7 +180,7 @@ class RecetarioManager:
             # Conectar paso con la receta
             self.graph.add((recipe_uri, RECETARIO.tienePaso, paso_uri))
         
-        # NUEVO: Agregar utensilios
+        #  Agregar utensilios
         for utensilio_name in recipe_data.get('utensilios', []):
             utensilio_uri = self._get_or_create_utensil(utensilio_name)
             self.graph.add((recipe_uri, RECETARIO.usaUtensilio, utensilio_uri))
